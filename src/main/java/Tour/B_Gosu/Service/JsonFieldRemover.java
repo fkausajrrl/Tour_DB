@@ -12,13 +12,13 @@ import java.util.List;
 public class JsonFieldRemover {
     public static void main(String[] args) {
         // JSON 파일 경로
-        String filePath = "C:\\Users\\fkausajrrl\\Desktop\\Test\\B_Gosu\\src\\main\\java\\Tour\\json\\한국관광공사_부산_음식점.json";
+        String filePath = "C:\\Users\\fkausajrrl\\Desktop\\Test\\B_Gosu\\src\\main\\java\\Tour\\json\\한국관광공사_부산_쇼핑.json";
 
         // JSON 데이터에서 특정 필드들을 지우고 새로운 JSON 데이터 생성
         List<ObjectNode> modifiedJsonDataList = removeFieldsFromJson(filePath);
 
         // 수정된 JSON 데이터를 파일에 저장
-        saveToJsonFile(modifiedJsonDataList, "C:\\Users\\fkausajrrl\\Desktop\\Test\\B_Gosu\\src\\main\\java\\Tour\\json\\modifideJsonfile.json");
+        saveToJsonFile(modifiedJsonDataList, "C:\\Users\\fkausajrrl\\Desktop\\Test\\B_Gosu\\src\\main\\java\\Tour\\json\\부산_쇼핑.json");
     }
 
     private static List<ObjectNode> removeFieldsFromJson(String filePath) {

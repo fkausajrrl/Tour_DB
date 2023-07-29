@@ -26,7 +26,7 @@ public class BGosuApplication {
 
 	@PostConstruct
 	public void saveKorServiceInfoFromFile() {
-		String filePath = "C:\\Users\\fkausajrrl\\Desktop\\Test\\B_Gosu\\src\\main\\java\\Tour\\json\\한국관광공사_부산_음식점.json";
+		String filePath = "src/main/java/Tour/json/DB데이터 확정_국문/한국관광공사_부산_음식점_DB저장.json";
 		List<KorServiceInfo> korServiceInfoList = korServiceInfoController.readJsonFile(filePath);
 		korServiceInfoService.saveKorServiceInfoList(korServiceInfoList);
 	}
