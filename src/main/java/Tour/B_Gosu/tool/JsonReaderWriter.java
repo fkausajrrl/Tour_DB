@@ -1,4 +1,4 @@
-package Tour.B_Gosu;
+package Tour.B_Gosu.tool;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
