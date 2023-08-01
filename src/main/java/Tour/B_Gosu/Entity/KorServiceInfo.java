@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="licensed_food")
+@Table(name ="knto")
 public class KorServiceInfo {
     @Column(name = "addr1")
     private String addr1;
@@ -59,8 +59,8 @@ public class KorServiceInfo {
 //    @Column(name = "modifiedtime")
 //    private String modifiedtime;
 //
-//    @Column(name = "sigungucode")
-//    private String sigungucode;
+    @Column(name = "sigungucode")
+    private String sigungucode;
 
     @Column(name = "tel")
     private String tel;
@@ -209,13 +209,13 @@ public class KorServiceInfo {
 //        this.modifiedtime = modifiedtime;
 //    }
 //
-//    public String getSigungucode() {
-//        return sigungucode;
-//    }
-//
-//    public void setSigungucode(String sigungucode) {
-//        this.sigungucode = sigungucode;
-//    }
+    public String getSigungucode() {
+        return sigungucode;
+    }
+
+    public void setSigungucode(String sigungucode) {
+        this.sigungucode = sigungucode;
+    }
 
     public String getTel() {
         return tel;

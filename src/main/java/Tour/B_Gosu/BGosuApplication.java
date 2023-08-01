@@ -26,8 +26,15 @@ public class BGosuApplication {
 
 	@PostConstruct
 	public void saveKorServiceInfoFromFile() {
-		String filePath = "src/main/java/Tour/json/food.json";
-		List<KorServiceInfo> korServiceInfoList = korServiceInfoController.readJsonFile(filePath);
-		korServiceInfoService.saveKorServiceInfoList(korServiceInfoList);
+		List<String> filePaths = List.of(
+				"src/main/java/Tour/json/DB데이터 확정_국문/한국관광공사_부산_관광지_DB저장.json",
+				"src/main/java/Tour/json/DB데이터 확정_국문/한국관광공사_부산_문화시설_DB저장.json",
+				"src/main/java/Tour/json/DB데이터 확정_국문/한국관광공사_부산_쇼핑_DB저장.json",
+				"src/main/java/Tour/json/DB데이터 확정_국문/한국관광공사_부산_음식점_DB저장.json",
+				"src/main/java/Tour/json/인생네컷.json"
+		);
+
+		List<KorServiceInfo> korServiceInfos = korServiceInfoController.readJsonFiles(filePaths);
+		korServiceInfoService.saveKorServiceInfoList(korServiceInfos);
 	}
 }
