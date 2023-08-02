@@ -17,6 +17,7 @@ public class KorServiceInfoService {
     }
 
     public void saveKorServiceInfoList(List<KorServiceInfo> korServiceInfoList) {
+        korServiceInfoRepository.deleteAll();
         korServiceInfoRepository.saveAll(korServiceInfoList);
     }
 }

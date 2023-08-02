@@ -12,7 +12,7 @@ public class JsonSearch {
 
         try {
             // JSON 파일 로드
-            File file = new File("C:\\Users\\fkausajrrl\\Desktop\\Test\\B_Gosu\\src\\main\\java\\Tour\\json\\한국관광공사_부산_관광지.json");
+            File file = new File("src/main/java/Tour/json/DB데이터 확정_국문/39_data.json");
 
             // JSON 파싱
             JsonNode rootNode = objectMapper.readTree(file);
