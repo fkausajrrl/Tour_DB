@@ -15,6 +15,7 @@ import java.util.List;
 public class BGosuApplication {
 	private final KorServiceInfoController korServiceInfoController;
 	private final KorServiceInfoService korServiceInfoService;
+	static int i = 0;
 
 	public BGosuApplication(KorServiceInfoController korServiceInfoController, KorServiceInfoService korServiceInfoService) {
 		this.korServiceInfoController = korServiceInfoController;
@@ -22,7 +23,6 @@ public class BGosuApplication {
 	}
 
 	public static void main(String[] args) throws IOException {
-
 		AreaBaseListApplication.main(args);
 		SpringApplication.run(BGosuApplication.class, args);
 	}

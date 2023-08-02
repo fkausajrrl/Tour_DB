@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="knto")
+@Table(name ="knto2")
 public class KorServiceInfo {
     @Column(name = "addr1")
     private String addr1;
