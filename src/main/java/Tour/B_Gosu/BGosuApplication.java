@@ -21,15 +21,18 @@ public class BGosuApplication {
 		this.korServiceInfoService = korServiceInfoService;
 	}
 
-	public static void main(String[] args) throws IOException {
-
-		AreaBaseListApplication.main(args);
+	public static void main(String[] args){
 		SpringApplication.run(BGosuApplication.class, args);
 	}
 
 	@PostConstruct
 	public void saveKorServiceInfoFromFile() {
-
+		String[] args = new String[0];
+		try {
+			AreaBaseListApplication.main(args);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		List<String> filePaths = List.of(
 				"src/main/java/Tour/json/DB데이터 확정_국문/12_data.json",
 				"src/main/java/Tour/json/DB데이터 확정_국문/14_data.json",

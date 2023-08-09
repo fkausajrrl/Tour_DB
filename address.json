@@ -1,0 +1,66 @@
+[
+  {
+    "sigungu": 15,
+    "addr1": "중구"
+  },
+  {
+    "sigungu": 16,
+    "addr1": "해운대구"
+  },
+  {
+    "sigungu": 5,
+    "addr1": "동구"
+  },
+  {
+    "sigungu": 7,
+    "addr1": "부산진구"
+  },
+  {
+    "sigungu": 11,
+    "addr1": "서구"
+  },
+  {
+    "sigungu": 10,
+    "addr1": "사하구"
+  },
+  {
+    "sigungu": 4,
+    "addr1": "남구"
+  },
+  {
+    "sigungu": 12,
+    "addr1": "수영구"
+  },
+  {
+    "sigungu": 14,
+    "addr1": "영도구"
+  },
+  {
+    "sigungu": 6,
+    "addr1": "동래구"
+  },
+  {
+    "sigungu": 2,
+    "addr1": "금정구"
+  },
+  {
+    "sigungu": 1,
+    "addr1": "강서구"
+  },
+  {
+    "sigungu": 8,
+    "addr1": "북구"
+  },
+  {
+    "sigungu": 9,
+    "addr1": "사상구"
+  },
+  {
+    "sigungu": 3,
+    "addr1": "기장군"
+  },
+  {
+    "sigungu": 13,
+    "addr1": "연제구"
+  }
+]

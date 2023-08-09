@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class JsonReaderWriter {
     public static void main(String[] args) {
-        String inputFilePath = "C:\\Users\\fkausajrrl\\Documents\\카카오톡 받은 파일\\한국관광공사_부산_음식점.json";
-        String outputFilePath = "C:\\Users\\fkausajrrl\\Documents\\카카오톡 받은 파일\\한국관광공사_부산_음식점2.json";
+        String inputFilePath = "src/main/java/Tour/json/DB데이터 확정_국문/39_data.json";
+        String outputFilePath = "src/main/java/Tour/json/test/39_data.json";
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();

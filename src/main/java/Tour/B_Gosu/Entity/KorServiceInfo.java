@@ -52,7 +52,7 @@ public class KorServiceInfo {
 
     @Column(name = "mapy")
     private String mapy;
-//
+    //
 //    @Column(name = "mlevel")
 //    private String mlevel;
 //
@@ -192,7 +192,7 @@ public class KorServiceInfo {
     public void setMapy(String mapy) {
         this.mapy = mapy;
     }
-//
+    //
 //    public String getMlevel() {
 //        return mlevel;
 //    }
