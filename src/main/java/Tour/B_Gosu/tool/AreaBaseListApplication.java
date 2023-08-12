@@ -1,5 +1,7 @@
 package Tour.B_Gosu.tool;
 
+//우리의 시작이자 끝
+//공공데이터 api사용하여 데이터 받아오는 코드
 
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;

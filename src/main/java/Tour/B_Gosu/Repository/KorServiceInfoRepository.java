@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, String> {
+    KorServiceInfo findByTitle(String title);
     @Query(value = "SELECT * FROM knto\n" +
             "WHERE contenttypeid = 39 AND \n" +
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
