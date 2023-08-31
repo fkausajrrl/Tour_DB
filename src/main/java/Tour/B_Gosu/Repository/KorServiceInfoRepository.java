@@ -3,13 +3,14 @@ package Tour.B_Gosu.Repository;
 import Tour.B_Gosu.Entity.KorServiceInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, String> {
-    KorServiceInfo findByTitle(String title);
+    // /knto 매핑
     @Query(value = "SELECT * FROM knto\n" +
             "WHERE contenttypeid = 39 AND \n" +
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
@@ -39,4 +40,14 @@ public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, 
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
             "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
     List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY);
+
+    // /challenge 매핑
+//    @Query(value = "SELECT * FROM knto WHERE title = :title", nativeQuery = true)
+//    List<KorServiceInfo> ChallengeAcept(@Param("title") String title);
+
+    List<KorServiceInfo> findByTitle(String title);
+//    List<KorServiceInfo> ChallengeCheck(String title);
+//    List<KorServiceInfo> ChallengeSuccess(String title);
+
+
 }

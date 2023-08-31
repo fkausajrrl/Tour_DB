@@ -17,7 +17,7 @@ public class KorServiceInfoService {
     }
 
     public void saveKorServiceInfoList(List<KorServiceInfo> korServiceInfoList) {
-        korServiceInfoRepository.deleteAll();
+//        korServiceInfoRepository.deleteAll();                   //spring.jpa.hibernate.ddl-auto=create로 해서 사용 X
         korServiceInfoRepository.saveAll(korServiceInfoList);
     }
 }
