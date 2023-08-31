@@ -5,8 +5,13 @@ import jakarta.persistence.*;
 @Entity
 @Table(name ="knto")
 public class KorServiceInfo {
-
-    @Id //pramary key
+    @Override
+    public String toString() {
+        // 원하는 형식으로 객체 정보를 반환하도록 구현
+        return "KorServiceInfo{" +
+                "title='" + title + "'" + "}";
+    }
+        @Id //pramary key
     @Column(name = "title")
     private String title;
 
@@ -64,9 +69,6 @@ public class KorServiceInfo {
 
     @Column(name = "tag4")
     private String tag4;
-
-//    @Column(name = "tag5")
-//    private String tag5;
 
     @Column(name = "menu")
     private String menu;

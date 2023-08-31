@@ -18,11 +18,9 @@ public class ChallengeController {
     private KorServiceInfoRepository korserviceInfoRepository;
 
     @PostMapping("/accept")
-    public ResponseEntity<String> challengeAccept(@RequestBody Map<String, String> requestBody) {
-        String postTitle = requestBody.get("posttitle");
-        List<KorServiceInfo> challengeInfos = korserviceInfoRepository.findByTitle(postTitle);
-        System.out.println("challengeInfos = " + challengeInfos);
-        return ResponseEntity.ok("챌린지 수락");
+    public ResponseEntity<String> challengeAccept(@RequestParam("title") String title) {
+        List<KorServiceInfo> challengeInfos = korserviceInfoRepository.findByTitle(title);
+        return ResponseEntity.ok("Challenge Info: " + challengeInfos.toString());
     }
 //    @GetMapping("/check")
 //    public ResponseEntity<List<KorServiceInfo>> getChallengeCheck(@RequestParam("title") String title) {

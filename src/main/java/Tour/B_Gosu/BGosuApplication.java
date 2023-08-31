@@ -40,7 +40,7 @@ public class BGosuApplication {
 //				"src/main/java/Tour/json/DB데이터 확정_국문/39_data.json",
 //				"src/main/java/Tour/json/knto0818_3.json",
 //				"src/main/java/Tour/json/knto_0822_음식점 태그.json"
-				"src/main/java/Tour/json/knto_0822.json"
+				"src/main/java/Tour/json/knto0831_1.json" //우리 db
 //				"src/main/java/Tour/json/oraksil.json"
 //				"src/main/java/Tour/json/인생네컷.json"
 		);
