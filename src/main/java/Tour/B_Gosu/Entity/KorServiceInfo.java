@@ -9,7 +9,8 @@ public class KorServiceInfo {
     public String toString() {
         // 원하는 형식으로 객체 정보를 반환하도록 구현
         return "KorServiceInfo{" +
-                "title='" + title + "'" + "}";
+                "title='" + title + "'" + "\n" +
+                "addr1 = '" + addr1 + "'" +"}"; //post 매핑 확인용
     }
         @Id //pramary key
     @Column(name = "title")
@@ -70,11 +71,13 @@ public class KorServiceInfo {
     @Column(name = "tag4")
     private String tag4;
 
+    @Column(name = "tag5")
+    private String tag5;
+
     @Column(name = "menu")
     private String menu;
-//
-//    @Column(name = "cat3")
-//    private String cat3;
+
+
 //
 //    @Column(name = "contentid")
 //    private String contentid;
@@ -248,13 +251,13 @@ public class KorServiceInfo {
         this.tag4 = tag4;
     }
 
-//    public String getTag5() {
-//        return tag5;
-//    }
-//
-//    public void setTag5(String tag5) {
-//        this.tag5 = tag5;
-//    }
+    public String getTag5() {
+        return tag5;
+    }
+
+    public void setTag5(String tag5) {
+        this.tag5 = tag5;
+    }
 
     public String getMenu() {
         return menu;

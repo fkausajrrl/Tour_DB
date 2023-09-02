@@ -12,7 +12,7 @@ import java.util.Set;
 public class DuplicateTitleFinder {
     public static void main(String[] args) {
         // JSON 파일 경로
-        String filePath = "src/main/java/Tour/json/test/39_data.json";
+        String filePath = "src/main/java/Tour/json/편의점.json";
 
         // 중복된 title 찾기
         Set<String> duplicateTitles = findDuplicateTitles(filePath);

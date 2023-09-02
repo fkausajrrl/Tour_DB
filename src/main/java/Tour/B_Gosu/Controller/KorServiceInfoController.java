@@ -66,7 +66,7 @@ public class KorServiceInfoController {
                     String tag2 = item.has("tag2") ? item.get("tag2").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String tag3 = item.has("tag3") ? item.get("tag3").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String tag4 = item.has("tag4") ? item.get("tag4").asText() : ""; //필드 값 없을시 ' ' 공백 입력
-//                    String tag5 = item.has("tag5") ? item.get("tag5").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String tag5 = item.has("tag5") ? item.get("tag5").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String menu = item.has("menu") ? item.get("menu").asText() : ""; //필드 값 없을시 ' ' 공백 입력
 
                     // 필요한 필드들로 새로운 KorServiceInfo 객체를 생성
@@ -90,7 +90,7 @@ public class KorServiceInfoController {
                     korServiceInfo.setTag2(tag2);
                     korServiceInfo.setTag3(tag3);
                     korServiceInfo.setTag4(tag4);
-//                    korServiceInfo.setTag5(tag5);
+                    korServiceInfo.setTag5(tag5);
                     korServiceInfo.setMenu(menu);
 
 

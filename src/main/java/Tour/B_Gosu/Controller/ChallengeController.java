@@ -8,10 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/challenge")
+@RequestMapping("/bgosu/api/challenge")
 public class ChallengeController {
 
     @Autowired
@@ -22,14 +21,14 @@ public class ChallengeController {
         List<KorServiceInfo> challengeInfos = korserviceInfoRepository.findByTitle(title);
         return ResponseEntity.ok("Challenge Info: " + challengeInfos.toString());
     }
-//    @GetMapping("/check")
-//    public ResponseEntity<List<KorServiceInfo>> getChallengeCheck(@RequestParam("title") String title) {
-//        List<KorServiceInfo> check = korserviceInfoRepository.ChallengeCheck(title);
-//        return new ResponseEntity<>(check, HttpStatus.OK);
-//    }
-//    @PostMapping("/success")
-//    public ResponseEntity<List<KorServiceInfo>> getChallengeSuccess(@RequestParam("title") String title) {
-//        List<KorServiceInfo> success = korserviceInfoRepository.ChallengeSuccess(title);
-//        return new ResponseEntity<>(success, HttpStatus.OK);
-//    }
+    @GetMapping("/check")
+    public ResponseEntity<List<KorServiceInfo>> getChallengeCheck(@RequestParam("title") String title) {
+        List<KorServiceInfo> check = korserviceInfoRepository.findByTitle(title);
+        return new ResponseEntity<>(check, HttpStatus.OK);
+    }
+    @PostMapping("/success")
+    public ResponseEntity<List<KorServiceInfo>> getChallengeSuccess(@RequestParam("title") String title) {
+        List<KorServiceInfo> success = korserviceInfoRepository.findByTitle(title);
+        return new ResponseEntity<>(success, HttpStatus.OK);
+    }
 }
