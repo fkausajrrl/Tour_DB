@@ -47,6 +47,16 @@ public class KorServiceInfoController {
 
                 // 각 요소들을 순회하면서 필요한 필드들을 추출하여 새로운 KorServiceInfo 객체로 변환
                 for (JsonNode item : itemArray) {
+<<<<<<< Updated upstream
+=======
+                    String fix = item.has("fix") ? item.get("fix").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String character_id = item.has("character_id") ? item.get("character_id").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+
+                    String title = item.get("title").asText();
+                    String title_jp = item.has("title_jp") ? item.get("title_jp").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_en = item.has("title_en") ? item.get("title_en").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_ch = item.has("title_ch") ? item.get("title_ch").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+>>>>>>> Stashed changes
                     String addr1 = item.get("addr1").asText();
                     String addr2 = item.get("addr2").asText();
                     String contenttypeid = item.get("contenttypeid").asText();
@@ -56,10 +66,30 @@ public class KorServiceInfoController {
                     String mapy = item.get("mapy").asText();
                     String sigungucode = item.get("sigungucode").asText();
                     String tel = item.get("tel").asText();
+<<<<<<< Updated upstream
                     String title = item.get("title").asText();
 
                     // 필요한 필드들로 새로운 KorServiceInfo 객체를 생성
                     KorServiceInfo korServiceInfo = new KorServiceInfo();
+=======
+//                    String character_id = item.has("character_id") ?item.get("character_id").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String contants =item.has("contants") ? item.get("contants").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String tag1 = item.has("tag1") ? item.get("tag1").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String tag2 = item.has("tag2") ? item.get("tag2").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String tag3 = item.has("tag3") ? item.get("tag3").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String tag4 = item.has("tag4") ? item.get("tag4").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String tag5 = item.has("tag5") ? item.get("tag5").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String menu = item.has("menu") ? item.get("menu").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+
+                    // 필요한 필드들로 새로운 KorServiceInfo 객체를 생성
+                    KorServiceInfo korServiceInfo = new KorServiceInfo();
+                    korServiceInfo.setFix(fix);
+                    korServiceInfo.setCharacter_id(character_id);
+                    korServiceInfo.setTitle(title);
+                    korServiceInfo.setTitle_jp(title_jp);
+                    korServiceInfo.setTitle_en(title_en);
+                    korServiceInfo.setTitle_ch(title_ch);
+>>>>>>> Stashed changes
                     korServiceInfo.setAddr1(addr1);
                     korServiceInfo.setAddr2(addr2);
                     korServiceInfo.setContenttypeid(contenttypeid);
@@ -69,7 +99,19 @@ public class KorServiceInfoController {
                     korServiceInfo.setMapy(mapy);
                     korServiceInfo.setSigungucode(sigungucode);
                     korServiceInfo.setTel(tel);
+<<<<<<< Updated upstream
                     korServiceInfo.setTitle(title);
+=======
+//                    korServiceInfo.setCharacter_id(character_id);
+                    korServiceInfo.setContants(contants);
+                    korServiceInfo.setTag1(tag1);
+                    korServiceInfo.setTag2(tag2);
+                    korServiceInfo.setTag3(tag3);
+                    korServiceInfo.setTag4(tag4);
+                    korServiceInfo.setTag5(tag5);
+                    korServiceInfo.setMenu(menu);
+
+>>>>>>> Stashed changes
 
                     // 새로운 KorServiceInfo 객체를 List에 추가
                     korServiceInfos.add(korServiceInfo);

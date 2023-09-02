@@ -6,4 +6,42 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, String> {
+<<<<<<< Updated upstream
+=======
+    // /knto 매핑
+    @Query(value = "SELECT * FROM knto\n" +
+            "WHERE contenttypeid = 39 AND \n" +
+            "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
+            "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
+    List<KorServiceInfo> findRestaurantsNearby(double mapX, double mapY);
+
+    @Query(value = "SELECT * FROM knto\n" +
+            "WHERE contenttypeid = 12 AND \n" +
+            "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
+            "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
+    List<KorServiceInfo> findTouristSpotsNearby(double mapX, double mapY);
+
+    @Query(value = "SELECT * FROM knto\n" +
+            "WHERE contenttypeid = 14 AND \n" +
+            "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
+            "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
+    List<KorServiceInfo> findCulturalPlacesNearby(double mapX, double mapY);
+
+    @Query(value = "SELECT * FROM knto\n" +
+            "WHERE contenttypeid = 38 AND \n" +
+            "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
+            "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
+    List<KorServiceInfo> findShoppingPlacesNearby(double mapX, double mapY);
+
+    @Query(value = "SELECT * FROM knto\n" +
+            "WHERE contenttypeid = 11 AND \n" +
+            "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
+            "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
+    List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY);
+
+    //challenge용도로 사용
+    List<KorServiceInfo> findByTitle(String title);
+
+
+>>>>>>> Stashed changes
 }

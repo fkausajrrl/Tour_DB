@@ -8,6 +8,51 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name ="knto2")
 public class KorServiceInfo {
+<<<<<<< Updated upstream
+=======
+
+    public String getFix() {
+        return fix;
+    }
+
+    public void setFix(String fix) {
+        this.fix = fix;
+    }
+
+    public String getCharacter_id() {
+        return character_id;
+    }
+
+    public void setCharacter_id(String character_id) {
+        this.character_id = character_id;
+    }
+
+    @Column(name = "fix")
+    private String fix;
+
+    @Column(name = "character_id")
+    private String character_id;
+    @Override
+    public String toString() {
+        // 원하는 형식으로 객체 정보를 반환하도록 구현
+        return "KorServiceInfo{" +
+                "title='" + title + "'" + "\n" +
+                "addr1 = '" + addr1 + "'" +"}"; //post 매핑 확인용
+    }
+        @Id //pramary key
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "title_jp")
+    private String title_jp;
+
+    @Column(name = "title_en")
+    private String title_en;
+
+    @Column(name = "title_ch")
+    private String title_ch;
+
+>>>>>>> Stashed changes
     @Column(name = "addr1")
     private String addr1;
 
@@ -52,6 +97,48 @@ public class KorServiceInfo {
 
     @Column(name = "mapy")
     private String mapy;
+<<<<<<< Updated upstream
+=======
+
+    @Column(name = "sigungucode")
+    private String sigungucode;
+
+    @Column(name = "tel")
+    private String tel;
+
+    //mydb
+
+    @Column(name = "contants")
+    private String contants;
+
+    @Column(name = "tag1")
+    private String tag1;
+
+    @Column(name = "tag2")
+    private String tag2;
+
+    @Column(name = "tag3")
+    private String tag3;
+
+    @Column(name = "tag4")
+    private String tag4;
+
+    @Column(name = "tag5")
+    private String tag5;
+
+    @Column(name = "menu")
+    private String menu;
+
+
+//
+//    @Column(name = "contentid")
+//    private String contentid;
+//
+//    @Column(name = "createdtime")
+//    private String createdtime;
+//    @Column(name = "cpyrhtDivCd")
+//    private String cpyrhtDivCd;
+>>>>>>> Stashed changes
 //
 //    @Column(name = "mlevel")
 //    private String mlevel;
@@ -73,6 +160,41 @@ public class KorServiceInfo {
 //    private String zipcode;
 
     //getter/setter methods
+<<<<<<< Updated upstream
+=======
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle_jp() {
+        return title_jp;
+    }
+
+    public void setTitle_jp(String title_jp) {
+        this.title_jp = title_jp;
+    }
+
+    public String getTitle_en() {
+        return title_en;
+    }
+
+    public void setTitle_en(String title_en) {
+        this.title_en = title_en;
+    }
+
+    public String getTitle_ch() {
+        return title_ch;
+    }
+
+    public void setTitle_ch(String title_ch) {
+        this.title_ch = title_ch;
+    }
+
+>>>>>>> Stashed changes
     public String getAddr1() {
         return addr1;
     }
@@ -225,6 +347,7 @@ public class KorServiceInfo {
         this.tel = tel;
     }
 
+<<<<<<< Updated upstream
     public String getTitle() {
         return title;
     }
@@ -240,4 +363,61 @@ public class KorServiceInfo {
 //    public void setZipcode(String zipcode) {
 //        this.zipcode = zipcode;
 //    }
+=======
+    public String getContants() {
+        return contants;
+    }
+
+    public void setContants(String contants) {
+        this.contants = contants;
+    }
+
+    public String getTag1() {
+        return tag1;
+    }
+
+    public void setTag1(String tag1) {
+        this.tag1 = tag1;
+    }
+
+    public String getTag2() {
+        return tag2;
+    }
+
+    public void setTag2(String tag2) {
+        this.tag2 = tag2;
+    }
+
+    public String getTag3() {
+        return tag3;
+    }
+
+    public void setTag3(String tag3) {
+        this.tag3 = tag3;
+    }
+
+    public String getTag4() {
+        return tag4;
+    }
+
+    public void setTag4(String tag4) {
+        this.tag4 = tag4;
+    }
+
+    public String getTag5() {
+        return tag5;
+    }
+
+    public void setTag5(String tag5) {
+        this.tag5 = tag5;
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
+>>>>>>> Stashed changes
 }
