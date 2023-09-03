@@ -3,6 +3,7 @@ package Tour.B_Gosu.Service;
 import Tour.B_Gosu.Entity.KorServiceInfo;
 import Tour.B_Gosu.Repository.KorServiceInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

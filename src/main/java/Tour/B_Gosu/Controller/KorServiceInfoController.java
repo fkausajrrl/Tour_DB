@@ -6,9 +6,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -105,40 +105,4 @@ public class KorServiceInfoController {
             return Collections.emptyList();
         }
     }
-
-
-// 이 코드는 json파일 데이터 외의 부분 지우는 코드
-//    public List<KorServiceInfo> readJsonFile(String filePath) {
-//        try {
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            File file = new File(filePath);
-//
-//            // JSON 파일을 읽어옵니다.
-//            JsonNode jsonData = objectMapper.readTree(file);
-//
-//            // "items" 안에 있는 "item" 배열을 가져옵니다.
-//            JsonNode itemArray = jsonData.get("response").get("body").get("items").get("item");
-//
-//            // "item" 배열의 요소들을 List<KorServiceInfo> 형태로 매핑합니다.
-//            List<KorServiceInfo> korServiceInfos = objectMapper.convertValue(itemArray, new TypeReference<List<KorServiceInfo>>() {});
-//
-//            return korServiceInfos;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return Collections.emptyList();
-//        }
-//    }
-
-
-// 이 밑의 코드가 원래 쓰던거
-//    public List<KorServiceInfo> readJsonFile(String filePath) {
-//        try {
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            File file = new File(filePath);
-//            return objectMapper.readValue(file, new TypeReference<List<KorServiceInfo>>() {});
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return Collections.emptyList();
-//        }
-//    }
 }
