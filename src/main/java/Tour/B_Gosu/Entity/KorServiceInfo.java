@@ -77,25 +77,6 @@ public class KorServiceInfo {
     @Column(name = "menu")
     private String menu;
 
-
-//
-//    @Column(name = "contentid")
-//    private String contentid;
-//
-//    @Column(name = "createdtime")
-//    private String createdtime;
-//    @Column(name = "cpyrhtDivCd")
-//    private String cpyrhtDivCd;
-//
-//    @Column(name = "mlevel")
-//    private String mlevel;
-//
-//    @Column(name = "modifiedtime")
-//    private String modifiedtime;
-//
-//    @Column(name = "zipcode")
-//    private String zipcode;
-
     //getter/setter methods
     public String getTitle() {
         return title;
