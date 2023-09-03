@@ -16,11 +16,6 @@ public class AnswerController {
     public AnswerController(AnswerInfoService answerInfoService) {
         this.answerInfoService = answerInfoService;
     }
-//    @PostMapping("/question")
-//    public ResponseEntity<String> saveDataFromFrontend(@RequestBody AnswerInfo info) {
-//        answerInfoService.saveDataFromFrontend(info);
-//        return ResponseEntity.ok("데이터 저장 완료");
-//    }
 
     @PostMapping("/question")
     public ResponseEntity<String> saveDataFromFrontend(@RequestParam("answer_id") String answer_id,@RequestParam("r_tag3") String r_tag3,
@@ -28,7 +23,6 @@ public class AnswerController {
                                                   @RequestParam("r_tag3_1") String r_tag3_1,@RequestParam("s_tag1") String s_tag1,
                                                   @RequestParam("ct_tag4") String ct_tag4,@RequestParam("ct_tag2") String ct_tag2,
                                                   @RequestParam("ct_tag3") String ct_tag3,@RequestParam("ct_tag1") String ct_tag1) {
-
         AnswerInfo info = new AnswerInfo();
         info.setAnswer_id(answer_id);
         info.setCt_tag1(ct_tag1);

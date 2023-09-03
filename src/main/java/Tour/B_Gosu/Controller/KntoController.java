@@ -1,6 +1,8 @@
 package Tour.B_Gosu.Controller;
 
+import Tour.B_Gosu.Entity.AnswerInfo;
 import Tour.B_Gosu.Entity.KorServiceInfo;
+import Tour.B_Gosu.Repository.AnswerInfoRepository;
 import Tour.B_Gosu.Repository.KorServiceInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -22,12 +21,29 @@ public class KntoController {
 
     @Autowired
     private KorServiceInfoRepository korserviceInfoRepository;
+    @Autowired
+    private AnswerInfoRepository answerInfoRepository;
+
 
     @GetMapping("/restaurant") // 모두 일치하는 경우 조회까지는 됨.
     public ResponseEntity<List<KorServiceInfo>> getRestaurantsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1, @RequestParam("tag2") String tag2,
-                                                                     @RequestParam("tag3") String tag3, @RequestParam("tag4") String tag4,
-                                                                     @RequestParam("tag5") String tag5) {
+                                                                     @RequestParam("answer_id") String answer_id) {
+        Optional<AnswerInfo> answerInfos =answerInfoRepository.findById(answer_id);
+        System.out.println("answerInfos = " + answerInfos);
+        String tag3;
+        String tag4;
+        String tag5;
+        if (answerInfos.isPresent()) {
+            AnswerInfo answer = answerInfos.get();
+            tag3 = answer.getR_tag3();
+            tag4 = answer.getR_tag4();
+            tag5 = answer.getR_tag5();
+        }
+        else {
+            // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
+            return ResponseEntity.notFound().build();
+        }
         List<KorServiceInfo> restaurants = korserviceInfoRepository.findRestaurantsNearby(mapx, mapy, tag1, tag2, tag3, tag4, tag5); // 레포지토리에서 가져오는 로직
         // 필터링: 입력된 태그와 일치하는 결과만 유지
         // 취향과 분류에 대해서 /취향은 처음 받을건데 이걸 저장하는걸 어디할지(영민아 저장해줘 데헷) / 이걸 조회할때 같이 받으면 해결되긴 하는데 흠.
@@ -82,6 +98,65 @@ public class KntoController {
 
         return new ResponseEntity<>(filteredResults, HttpStatus.OK);
     }
+//    @GetMapping("/restaurant") //
+//    public ResponseEntity<List<KorServiceInfo>> getRestaurantsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
+//                                                                     @RequestParam("tag1") String tag1, @RequestParam("tag2") String tag2,
+//                                                                     @RequestParam("tag3") String tag3, @RequestParam("tag4") String tag4,
+//                                                                     @RequestParam("tag5") String tag5) {
+//        List<KorServiceInfo> restaurants = korserviceInfoRepository.findRestaurantsNearby(mapx, mapy, tag1, tag2, tag3, tag4, tag5); // 레포지토리에서 가져오는 로직
+//        // 필터링: 입력된 태그와 일치하는 결과만 유지
+//        // 취향과 분류에 대해서 /취향은 처음 받을건데 이걸 저장하는걸 어디할지(영민아 저장해줘 데헷) / 이걸 조회할때 같이 받으면 해결되긴 하는데 흠.
+//        Set<KorServiceInfo> filteredResultsSet = new LinkedHashSet<>(); //순서 정렬
+//        filteredResultsSet.addAll(restaurants.stream() //모두 일치
+//                .filter(info ->
+//                        info.getTag1().contains(tag1) &&
+//                                info.getTag2().contains(tag2) &&
+//                                info.getTag3().contains(tag3) &&
+//                                info.getTag4().contains(tag4) &&
+//                                info.getTag5().contains(tag5)
+//                )
+//                .collect(Collectors.toList()));
+//        System.out.println("count = " + filteredResultsSet.stream().count());
+//
+//        filteredResultsSet.addAll(restaurants.stream() //tag5 제외
+//                .filter(info ->
+//                        info.getTag1().contains(tag1) &&
+//                                info.getTag2().contains(tag2) &&
+//                                info.getTag3().contains(tag3) &&
+//                                info.getTag4().contains(tag4)
+//                )
+//                .collect(Collectors.toList()));
+//        System.out.println("count = " + filteredResultsSet.stream().count());
+//
+//        filteredResultsSet.addAll(restaurants.stream() //tag5, tag4 제외
+//                .filter(info ->
+//                        info.getTag1().contains(tag1) &&
+//                                info.getTag2().contains(tag2) &&
+//                                info.getTag3().contains(tag3)
+//                )
+//                .collect(Collectors.toList()));
+//        System.out.println("count = " + filteredResultsSet.stream().count());
+//
+//        filteredResultsSet.addAll(restaurants.stream() //tag5, tag4, tag3 제외
+//                .filter(info ->
+//                        info.getTag1().contains(tag1) &&
+//                                info.getTag2().contains(tag2)
+//                )
+//                .collect(Collectors.toList()));
+//        System.out.println("count = " + filteredResultsSet.stream().count());
+//
+//        filteredResultsSet.addAll(restaurants.stream() //tag5, tag4, tag3, tag2 제외
+//                .filter(info ->
+//                        info.getTag1().contains(tag1)
+//                )
+//                .collect(Collectors.toList()));
+//        System.out.println("count = " + filteredResultsSet.stream().count());
+//
+//        List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
+//
+//
+//        return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+//    }
 //restaurant원본
 //    public ResponseEntity<List<KorServiceInfo>> getRestaurantsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy) {
 //        List<KorServiceInfo> restaurants = korserviceInfoRepository.findRestaurantsNearby(mapx, mapy); // 레포지토리에서 가져오는 로직
