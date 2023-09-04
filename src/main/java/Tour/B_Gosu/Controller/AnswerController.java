@@ -1,21 +1,43 @@
 package Tour.B_Gosu.Controller;
 
 import Tour.B_Gosu.Entity.AnswerInfo;
+import Tour.B_Gosu.Entity.KorServiceInfo;
+import Tour.B_Gosu.Repository.AnswerInfoRepository;
 import Tour.B_Gosu.Service.AnswerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/bgosu/api")
 public class AnswerController {
     private final AnswerInfoService answerInfoService;
+    private final AnswerInfoRepository answerInfoRepository;
     @Autowired
-    public AnswerController(AnswerInfoService answerInfoService) {
+    public AnswerController(AnswerInfoService answerInfoService, AnswerInfoRepository answerInfoRepository) {
         this.answerInfoService = answerInfoService;
+        this.answerInfoRepository = answerInfoRepository;
     }
 
-    @PostMapping("/question")
+    @GetMapping("/question/find")
+    public ResponseEntity<Integer> findAnswerId(@RequestParam("answer_id") String answer_id) {
+        Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(answer_id);
+
+        if (answerInfos.isPresent()) {
+            // 해당 answer_id가 DB에 존재하는 경우 1을 반환
+            return ResponseEntity.ok(1);
+        } else {
+            // 해당 answer_id에 대한 데이터가 없을 경우 0을 반환
+            return ResponseEntity.ok(0);
+        }
+    }
+
+
+    @PostMapping("/question/save")
     public ResponseEntity<String> saveDataFromFrontend(@RequestParam("answer_id") String answer_id,@RequestParam("r_tag3") String r_tag3,
                                                   @RequestParam("r_tag4") String r_tag4,@RequestParam("r_tag5") String r_tag5,
                                                   @RequestParam("r_tag3_1") String r_tag3_1,@RequestParam("s_tag1") String s_tag1,

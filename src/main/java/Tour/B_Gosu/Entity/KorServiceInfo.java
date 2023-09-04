@@ -12,7 +12,7 @@ public class KorServiceInfo {
                 "title='" + title + "'" + "\n" +
                 "addr1 = '" + addr1 + "'" +"}"; //post 매핑 확인용
     }
-        @Id //pramary key
+    @Id //pramary key
     @Column(name = "title")
     private String title;
 
