@@ -1,10 +1,8 @@
 package Tour.B_Gosu.Repository;
 
 import Tour.B_Gosu.Entity.KorServiceInfo;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +14,7 @@ public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, 
             "WHERE contenttypeid = 39 AND \n" +
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
             "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
-    List<KorServiceInfo> findRestaurantsNearby(double mapx, double mapy, String tag1, String tag2, String tag3, String tag4, String tag5);
+    List<KorServiceInfo> findRestaurantsNearby(double mapx, double mapy, String tag1, String tag2);
 
     @Query(value = "SELECT * FROM knto\n" +
             "WHERE contenttypeid = 12 AND \n" +
@@ -37,12 +35,14 @@ public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, 
     List<KorServiceInfo> findShoppingPlacesNearby(double mapX, double mapY);
 
     @Query(value = "SELECT * FROM knto\n" +
-            "WHERE contenttypeid = 11 AND \n" +
+            "WHERE contenttypeid = 11 AND\n" +
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
             "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
-    List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY);
+    List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY, String tag1);
+
+    List<KorServiceInfo> findByTitle(String title);
 
     // /challenge 매핑
-    List<KorServiceInfo> findByTitle(String title);
+
 
 }

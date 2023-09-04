@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/bgosu/api")
 public class AnswerController {
-
-
     private final AnswerInfoService answerInfoService;
     @Autowired
     public AnswerController(AnswerInfoService answerInfoService) {
