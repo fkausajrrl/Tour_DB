@@ -40,6 +40,15 @@ public class AnswerInfo {
     @Column(name = "ct_tag1") //동적 / 정적 / 상관없음 알려주는 태그
     private String ct_tag1;
 
+    @Column(name = "name") //여행객 이름
+    private String name;
+
+    @Column(name = "start_date") //여행 시작 날짜
+    private String start_date;
+
+    @Column(name = "end_date") //여행 종료 날짜
+    private String end_date;
+
     //getter & setter
     public String getAnswer_id() {
         return answer_id;
@@ -119,6 +128,30 @@ public class AnswerInfo {
 
     public void setCt_tag1(String ct_tag1) {
         this.ct_tag1 = ct_tag1;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 
 }

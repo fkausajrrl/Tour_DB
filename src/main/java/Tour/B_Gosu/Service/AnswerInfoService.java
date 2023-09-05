@@ -28,6 +28,9 @@ public class AnswerInfoService {
         answerInfo.setR_tag5(info.getR_tag5());
         answerInfo.setR_tag3_1(info.getR_tag3_1());
         answerInfo.setS_tag1(info.getS_tag1());
+        answerInfo.setName(info.getName());
+        answerInfo.setStart_date(info.getStart_date());
+        answerInfo.setEnd_date(info.getEnd_date());
 
         answerInfoRepository.save(answerInfo);
     }

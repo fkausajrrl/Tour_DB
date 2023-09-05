@@ -17,11 +17,13 @@ import java.util.Optional;
 public class AnswerController {
     private final AnswerInfoService answerInfoService;
     private final AnswerInfoRepository answerInfoRepository;
+
     @Autowired
     public AnswerController(AnswerInfoService answerInfoService, AnswerInfoRepository answerInfoRepository) {
         this.answerInfoService = answerInfoService;
         this.answerInfoRepository = answerInfoRepository;
     }
+
     @GetMapping("/question/find")
     public ResponseEntity<Integer> findAnswerId(@RequestParam("answer_id") String answer_id) {
         Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(answer_id);
@@ -34,12 +36,15 @@ public class AnswerController {
             return ResponseEntity.ok(0);
         }
     }
+
     @PostMapping("/question/save")
-    public ResponseEntity<String> saveDataFromFrontend(@RequestParam("answer_id") String answer_id,@RequestParam("r_tag3") String r_tag3,
-                                                  @RequestParam("r_tag4") String r_tag4,@RequestParam("r_tag5") String r_tag5,
-                                                  @RequestParam("r_tag3_1") String r_tag3_1,@RequestParam("s_tag1") String s_tag1,
-                                                  @RequestParam("ct_tag4") String ct_tag4,@RequestParam("ct_tag2") String ct_tag2,
-                                                  @RequestParam("ct_tag3") String ct_tag3,@RequestParam("ct_tag1") String ct_tag1) {
+    public ResponseEntity<String> saveDataFromFrontend(@RequestParam("answer_id") String answer_id, @RequestParam("r_tag3") String r_tag3,
+                                                       @RequestParam("r_tag4") String r_tag4, @RequestParam("r_tag5") String r_tag5,
+                                                       @RequestParam("r_tag3_1") String r_tag3_1, @RequestParam("s_tag1") String s_tag1,
+                                                       @RequestParam("ct_tag4") String ct_tag4, @RequestParam("ct_tag2") String ct_tag2,
+                                                       @RequestParam("ct_tag3") String ct_tag3, @RequestParam("ct_tag1") String ct_tag1,
+                                                       @RequestParam("name") String name, @RequestParam("start_date") String start_date,
+                                                       @RequestParam("end_date") String end_date) {
         AnswerInfo info = new AnswerInfo();
         info.setAnswer_id(answer_id);
         info.setCt_tag1(ct_tag1);
@@ -51,6 +56,9 @@ public class AnswerController {
         info.setR_tag5(r_tag5);
         info.setR_tag3_1(r_tag3_1);
         info.setS_tag1(s_tag1);
+        info.setName(name);
+        info.setStart_date(start_date);
+        info.setEnd_date(end_date);
 
         answerInfoService.saveDataFromFrontend(info);
         return ResponseEntity.ok("데이터 저장 완료");
