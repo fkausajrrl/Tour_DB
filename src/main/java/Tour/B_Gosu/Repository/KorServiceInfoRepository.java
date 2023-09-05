@@ -40,7 +40,7 @@ public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, 
             "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
     List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY, String tag1);
 
-    List<KorServiceInfo> findByTitle(String title);
+    KorServiceInfo findByTitle(String title);
 
     // /challenge 매핑
 

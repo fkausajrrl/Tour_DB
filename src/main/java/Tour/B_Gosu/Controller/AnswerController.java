@@ -22,7 +22,6 @@ public class AnswerController {
         this.answerInfoService = answerInfoService;
         this.answerInfoRepository = answerInfoRepository;
     }
-
     @GetMapping("/question/find")
     public ResponseEntity<Integer> findAnswerId(@RequestParam("answer_id") String answer_id) {
         Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(answer_id);
@@ -35,8 +34,6 @@ public class AnswerController {
             return ResponseEntity.ok(0);
         }
     }
-
-
     @PostMapping("/question/save")
     public ResponseEntity<String> saveDataFromFrontend(@RequestParam("answer_id") String answer_id,@RequestParam("r_tag3") String r_tag3,
                                                   @RequestParam("r_tag4") String r_tag4,@RequestParam("r_tag5") String r_tag5,

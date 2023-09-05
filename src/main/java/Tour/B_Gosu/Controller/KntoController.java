@@ -274,6 +274,7 @@ public class KntoController {
         return new ResponseEntity<>(filteredResults, HttpStatus.OK);
     }
     @GetMapping("/enjoy") //구현 완료   tag1만 분류해서 주는게 맞는가? tag1값 다음에 tag2값 같이 해서 정렬 된 상태로 줘야하는 거 아닌가 -> 지우안테 물어보깅.
+                            // => 챌린지 말고 태그로만 사용해서 지도에 표시
     public ResponseEntity<List<KorServiceInfo>> getenjoyPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1) {
 
