@@ -1,19 +1,17 @@
 package Tour.B_Gosu.Controller;
 
 import Tour.B_Gosu.Entity.AnswerInfo;
-import Tour.B_Gosu.Entity.KorServiceInfo;
 import Tour.B_Gosu.Repository.AnswerInfoRepository;
 import Tour.B_Gosu.Service.AnswerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/bgosu/api")
+@RequestMapping("/bgosu/api/question")
 public class AnswerController {
     private final AnswerInfoService answerInfoService;
     private final AnswerInfoRepository answerInfoRepository;
@@ -24,7 +22,7 @@ public class AnswerController {
         this.answerInfoRepository = answerInfoRepository;
     }
 
-    @GetMapping("/question/find")
+    @GetMapping("/find")
     public ResponseEntity<Integer> findAnswerId(@RequestParam("answer_id") String answer_id) {
         Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(answer_id);
 
@@ -37,7 +35,7 @@ public class AnswerController {
         }
     }
 
-    @PostMapping("/question/save")
+    @PostMapping("/save")
     public ResponseEntity<String> saveDataFromFrontend(@RequestParam("answer_id") String answer_id, @RequestParam("r_tag3") String r_tag3,
                                                        @RequestParam("r_tag4") String r_tag4, @RequestParam("r_tag5") String r_tag5,
                                                        @RequestParam("r_tag3_1") String r_tag3_1, @RequestParam("s_tag1") String s_tag1,

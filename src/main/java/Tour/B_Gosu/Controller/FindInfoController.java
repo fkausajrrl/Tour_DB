@@ -2,31 +2,42 @@ package Tour.B_Gosu.Controller;
 
 import Tour.B_Gosu.Entity.FindInfo;
 import Tour.B_Gosu.Entity.KorServiceInfo;
+import Tour.B_Gosu.Entity.SuccessInfo;
+import Tour.B_Gosu.Repository.FindInfoRepository;
 import Tour.B_Gosu.Repository.KorServiceInfoRepository;
+import Tour.B_Gosu.Repository.SuccessInfoRepository;
 import Tour.B_Gosu.Service.FindInfoService;
+import Tour.B_Gosu.Service.SuccessInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/bgosu/api/challenge")
 public class FindInfoController {
 
     private final KorServiceInfoRepository korserviceInfoRepository;
+    private final FindInfoRepository findInfoRepository;
     private final FindInfoService findInfoService;
+    private final SuccessInfoService successInfoService;
+    private final SuccessInfoRepository successInfoRepository;
+
     @Autowired
-    public FindInfoController(KorServiceInfoRepository korserviceInfoRepository, FindInfoService findInfoService) {
+    public FindInfoController(KorServiceInfoRepository korserviceInfoRepository, FindInfoService findInfoService,
+                              FindInfoRepository findInfoRepository, SuccessInfoService successInfoService, SuccessInfoRepository successInfoRepository) {
         this.korserviceInfoRepository = korserviceInfoRepository;
         this.findInfoService = findInfoService;
+        this.findInfoRepository = findInfoRepository;
+        this.successInfoService = successInfoService;
+        this.successInfoRepository = successInfoRepository;
     }
 
     @PostMapping("/accept")
     public ResponseEntity<String> challengeAccept(@RequestParam("answer_id") String answer_id, @RequestParam("title") String title) {
         KorServiceInfo firstKorServiceInfo = korserviceInfoRepository.findByTitle(title);
-        
+
         FindInfo findInfo = new FindInfo();
         findInfo.setAnswer_id(answer_id);
         findInfo.setTitle(firstKorServiceInfo.getTitle());
@@ -56,12 +67,28 @@ public class FindInfoController {
         return ResponseEntity.ok("Ok");
     }
 
-//    @GetMapping("/check")
-//    public ResponseEntity<List<KorServiceInfo>> getChallengeCheck(@RequestParam("title") String title) {
-//        List<KorServiceInfo> check = korserviceInfoRepository.findByTitle(title);
-//        return new ResponseEntity<>(check, HttpStatus.OK);
-//    }
-//
+    @GetMapping("/check")
+    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("answer_id") String answer_id) {
+        //successInfoRepository에 있는 쿼리 호출하는 부분 추가
+        Optional<FindInfo> challange_findInfo = findInfoRepository.findById(answer_id);
+
+
+        if (challange_findInfo.isPresent()) {
+            // 해당 answer_id가 DB에 존재하는 경우 1을 반환
+
+            SuccessInfo s_info = new SuccessInfo();
+
+            s_info.setTitle(challange_findInfo.get().getTitle());
+            s_info.setAnswer_id(answer_id);
+
+            successInfoService.save(s_info);
+
+            return ResponseEntity.ok(1);
+        } else {
+            // 해당 answer_id에 대한 데이터가 없을 경우 0을 반환
+            return ResponseEntity.ok(0);
+        }
+    }
 //    @PostMapping("/success")
 //    public ResponseEntity<List<KorServiceInfo>> getChallengeSuccess(@RequestParam("title") String title) {
 //        List<KorServiceInfo> success = korserviceInfoRepository.findByTitle(title);
