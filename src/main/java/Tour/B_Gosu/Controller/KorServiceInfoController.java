@@ -60,7 +60,7 @@ public class KorServiceInfoController {
                     String mapy = item.get("mapy").asText();
                     String sigungucode = item.get("sigungucode").asText();
                     String tel = item.get("tel").asText();
-                    String character_id = item.has("character_id") ?item.get("character_id").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    int character_id = Integer.parseInt(item.has("character_id") ?item.get("character_id").asText() : ""); //필드 값 없을시 ' ' 공백 입력
                     String contants =item.has("contants") ? item.get("contants").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String tag1 = item.has("tag1") ? item.get("tag1").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String tag2 = item.has("tag2") ? item.get("tag2").asText() : ""; //필드 값 없을시 ' ' 공백 입력

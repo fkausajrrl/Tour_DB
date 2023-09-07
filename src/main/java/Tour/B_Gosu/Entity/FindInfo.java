@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 @Table(name ="find")
 public class FindInfo {
     @Id //pramary key
-    @Column(name = "answer_id")
-    private String answer_id;
+    @Column(name = "character_id")
+    private int character_id;
 
     @Column(name = "title")
     private String title;
@@ -49,8 +49,6 @@ public class FindInfo {
     private String tel;
 
     //mydb
-    @Column(name = "character_id")
-    private String character_id;
 
     @Column(name = "contants")
     private String contants;
@@ -73,14 +71,12 @@ public class FindInfo {
     @Column(name = "menu")
     private String menu;
 
-    //getter/setter methods
-    public String getAnswer_id() {
-        return answer_id;
-    }
+    @Column(name = "top10")
+    private int top10;
 
-    public void setAnswer_id(String answer_id) {
-        this.answer_id = answer_id;
-    }
+
+    //getter/setter methods
+
     public String getTitle() {
         return title;
     }
@@ -88,7 +84,6 @@ public class FindInfo {
     public void setTitle(String title) {
         this.title = title;
     }
-
 
     public String getTitle_jp() {
         return title_jp;
@@ -186,12 +181,11 @@ public class FindInfo {
         this.tel = tel;
     }
 
-
-    public String getCharacter_id() {
+    public int getCharacter_id() {
         return character_id;
     }
 
-    public void setCharacter_id(String character_id) {
+    public void setCharacter_id(int character_id) {
         this.character_id = character_id;
     }
 
@@ -249,5 +243,12 @@ public class FindInfo {
 
     public void setMenu(String menu) {
         this.menu = menu;
+    }
+    public int getTop10() {
+        return top10;
+    }
+
+    public void setTop10(int top10) {
+        this.top10 = top10;
     }
 }

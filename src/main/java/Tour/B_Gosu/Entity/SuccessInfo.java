@@ -8,8 +8,8 @@ public class SuccessInfo {
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int count;
-    @Column(name = "answer_id")
-    private String answer_id;
+    @Column(name = "character_id")
+    private int character_id;
 
     @Column(name = "title")
     private String title;
@@ -21,14 +21,14 @@ public class SuccessInfo {
     public void setCount(int count) {
         this.count = count;
     }
-
-    public String getAnswer_id() {
-        return answer_id;
+    public int getCharacter_id() {
+        return character_id;
     }
 
-    public void setAnswer_id(String answer_id) {
-        this.answer_id = answer_id;
+    public void setCharacter_id(int character_id) {
+        this.character_id = character_id;
     }
+
 
     public String getTitle() {
         return title;

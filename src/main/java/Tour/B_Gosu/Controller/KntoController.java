@@ -1,9 +1,9 @@
 package Tour.B_Gosu.Controller;
 
-import Tour.B_Gosu.Entity.AnswerInfo;
 import Tour.B_Gosu.Entity.KorServiceInfo;
-import Tour.B_Gosu.Repository.AnswerInfoRepository;
+import Tour.B_Gosu.Entity.UserInfo;
 import Tour.B_Gosu.Repository.KorServiceInfoRepository;
+import Tour.B_Gosu.Repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,20 +22,20 @@ public class KntoController {
     @Autowired
     private KorServiceInfoRepository korserviceInfoRepository;
     @Autowired
-    private AnswerInfoRepository answerInfoRepository;
+    private UserInfoRepository userInfoRepository;
 
-
+//character_id 받아와서 character테이블에서 user_id조회 -> User table에서 user_id로 조회해서 가져오기
     @GetMapping("/restaurant") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getRestaurantsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1, @RequestParam("tag2") String tag2,
-                                                                     @RequestParam("answer_id") String answer_id) {
+                                                                     @RequestParam("character_id") String character_id) {
 
         //통신으로 받은 answer_id를 answer테이블에서 조회해서 tag3,tag4,tag5값 가져와서 저장하는 로직
-        Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(answer_id);
+        Optional<UserInfo> userInfos = userInfoRepository.findById(character_id);
         String tag3, tag4, tag5;
 
-        if (answerInfos.isPresent()) {
-            AnswerInfo answer = answerInfos.get();
+        if (userInfos.isPresent()) {
+            UserInfo answer = userInfos.get();
             tag3 = answer.getR_tag3();
             tag4 = answer.getR_tag4();
             tag5 = answer.getR_tag5();
@@ -100,9 +100,9 @@ public class KntoController {
     }
     @GetMapping("/tour") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getTouristSpotsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
-                                                                      @RequestParam("answer_id") String answer_id) {
+                                                                      @RequestParam("android_id") String android_id) {
 
-        Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(answer_id);
+        Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(android_id);
         String tag1, tag2, tag3, tag4;
 
         if (answerInfos.isPresent()) {

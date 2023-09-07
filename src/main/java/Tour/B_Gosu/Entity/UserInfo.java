@@ -1,19 +1,19 @@
 package Tour.B_Gosu.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-@Table(name ="answer")
-public class AnswerInfo {
+@Table(name ="m_user")
+public class UserInfo {
     //이 Entity는 프론트로부터 받아오는 정보 저장 용도 테이블 설계
     @Id //pramary key
-    @Column(name = "answer_id") //안드로이드 시리얼 넘버
-    private String answer_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //안드로이드 시리얼 넘버의 대조키 -> 별명 같은 개념
+    private int user_id;
+
+    @Column(name = "android_id") //안드로이드 시리얼 넘버
+    private String android_id;
 
     @Column(name = "r_tag3") //한중일양 선택
     private String r_tag3;
@@ -52,12 +52,20 @@ public class AnswerInfo {
     private String end_date;
 
     //getter & setter
-    public String getAnswer_id() {
-        return answer_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setAnswer_id(String answer_id) {
-        this.answer_id = answer_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getAndroid_id() {
+        return android_id;
+    }
+
+    public void setAndroid_id(String android_id) {
+        this.android_id = android_id;
     }
 
     public String getR_tag3() {

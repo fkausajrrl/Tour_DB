@@ -5,13 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name ="knto")
 public class KorServiceInfo {
-    @Override
-    public String toString() {
-        // 원하는 형식으로 객체 정보를 반환하도록 구현
-        return "KorServiceInfo{" +
-                "title='" + title + "'" + "\n" +
-                "addr1 = '" + addr1 + "'" +"}"; //post 매핑 확인용
-    }
     @Id //pramary key
     @Column(name = "title")
     private String title;
@@ -54,7 +47,7 @@ public class KorServiceInfo {
 
     //mydb
     @Column(name = "character_id")
-    private String character_id;
+    private int character_id;
 
     @Column(name = "contants")
     private String contants;
@@ -76,6 +69,9 @@ public class KorServiceInfo {
 
     @Column(name = "menu")
     private String menu;
+
+    @Column(name = "top10")
+    private int top10;
 
     //getter/setter methods
     public String getTitle() {
@@ -183,12 +179,11 @@ public class KorServiceInfo {
         this.tel = tel;
     }
 
-
-    public String getCharacter_id() {
+    public int getCharacter_id() {
         return character_id;
     }
 
-    public void setCharacter_id(String character_id) {
+    public void setCharacter_id(int character_id) {
         this.character_id = character_id;
     }
 
@@ -246,5 +241,12 @@ public class KorServiceInfo {
 
     public void setMenu(String menu) {
         this.menu = menu;
+    }
+    public int getTop10() {
+        return top10;
+    }
+
+    public void setTop10(int top10) {
+        this.top10 = top10;
     }
 }

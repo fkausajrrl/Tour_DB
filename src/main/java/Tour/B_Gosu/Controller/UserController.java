@@ -1,32 +1,30 @@
 package Tour.B_Gosu.Controller;
 
-import Tour.B_Gosu.Entity.AnswerInfo;
-import Tour.B_Gosu.Repository.AnswerInfoRepository;
-import Tour.B_Gosu.Service.AnswerInfoService;
+import Tour.B_Gosu.Entity.UserInfo;
+import Tour.B_Gosu.Repository.UserInfoRepository;
+import Tour.B_Gosu.Service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/bgosu/api/question")
-public class AnswerController {
-    private final AnswerInfoService answerInfoService;
-    private final AnswerInfoRepository answerInfoRepository;
-
+public class UserController {
+    private final UserInfoService userInfoService;
+    private final UserInfoRepository userInfoRepository;
     @Autowired
-    public AnswerController(AnswerInfoService answerInfoService, AnswerInfoRepository answerInfoRepository) {
-        this.answerInfoService = answerInfoService;
-        this.answerInfoRepository = answerInfoRepository;
+    public UserController(UserInfoService userInfoService, UserInfoRepository userInfoRepository) {
+        this.userInfoService = userInfoService;
+        this.userInfoRepository = userInfoRepository;
     }
 
     @GetMapping("/find")
-    public ResponseEntity<Integer> findAnswerId(@RequestParam("answer_id") String answer_id) {
-        Optional<AnswerInfo> answerInfos = answerInfoRepository.findById(answer_id);
+    public ResponseEntity<Integer> findAndroid_id(@RequestParam("android_id") String android_id) {
+        Optional<UserInfo> userInfos = userInfoRepository.findByAndroidId(android_id);
 
-        if (answerInfos.isPresent()) {
+        if (userInfos.isPresent()) {
             // 해당 answer_id가 DB에 존재하는 경우 1을 반환
             return ResponseEntity.ok(1);
         } else {
@@ -36,15 +34,15 @@ public class AnswerController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveDataFromFrontend(@RequestParam("answer_id") String answer_id, @RequestParam("r_tag3") String r_tag3,
+    public ResponseEntity<String> saveDataFromFrontend(@RequestParam("android_id") String android_id, @RequestParam("r_tag3") String r_tag3,
                                                        @RequestParam("r_tag4") String r_tag4, @RequestParam("r_tag5") String r_tag5,
                                                        @RequestParam("r_tag3_1") String r_tag3_1, @RequestParam("s_tag1") String s_tag1,
                                                        @RequestParam("ct_tag4") String ct_tag4, @RequestParam("ct_tag2") String ct_tag2,
                                                        @RequestParam("ct_tag3") String ct_tag3, @RequestParam("ct_tag1") String ct_tag1,
                                                        @RequestParam("name") String name, @RequestParam("start_date") String start_date,
                                                        @RequestParam("end_date") String end_date) {
-        AnswerInfo info = new AnswerInfo();
-        info.setAnswer_id(answer_id);
+        UserInfo info = new UserInfo();
+        info.setAndroid_id(android_id);;
         info.setCt_tag1(ct_tag1);
         info.setCt_tag2(ct_tag2);
         info.setCt_tag3(ct_tag3);
@@ -58,7 +56,7 @@ public class AnswerController {
         info.setStart_date(start_date);
         info.setEnd_date(end_date);
 
-        answerInfoService.saveDataFromFrontend(info);
+        userInfoService.saveDataFromFrontend(info);
         return ResponseEntity.ok("데이터 저장 완료");
     }
 }
