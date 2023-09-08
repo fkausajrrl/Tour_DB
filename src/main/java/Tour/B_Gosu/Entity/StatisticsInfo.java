@@ -5,16 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name ="statistics")
 public class StatisticsInfo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int count;
-
-    @Column(name = "top10")
-    private int top10;
-
-    @Column(name = "title")
-    private String title;
-
     public int getCount() {
         return count;
     }
@@ -38,5 +28,15 @@ public class StatisticsInfo {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int count;
+
+    @Column(name = "top10")
+    private int top10;
+
+    @Column(name = "title")
+    private String title;
 
 }

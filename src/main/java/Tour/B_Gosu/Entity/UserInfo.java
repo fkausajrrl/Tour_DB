@@ -2,62 +2,59 @@ package Tour.B_Gosu.Entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
-@Table(name ="user")
+@Table(name ="myuser")
 public class UserInfo {
     //이 Entity는 프론트로부터 받아오는 정보 저장 용도 테이블 설계
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //안드로이드 시리얼 넘버의 대조키 -> 별명 같은 개념
-    private int user_id;
+    private int userId;
 
     @Column(name = "android") //안드로이드 시리얼 넘버
     private String android;
 
-    @Column(name = "r_tag3") //한중일양 선택
-    private String r_tag3;
+    @Column(name = "Rtag3") //한중일양 선택
+    private String Rtag3;
 
-    @Column(name = "r_tag4") //맵기 여부
-    private String r_tag4;
+    @Column(name = "Rtag4") //맵기 여부
+    private String Rtag4;
 
-    @Column(name = "r_tag5") //육류 / 해산물 / 상관없음
-    private String r_tag5;
+    @Column(name = "Rtag5") //육류 / 해산물 / 상관없음
+    private String Rtag5;
 
-    @Column(name = "r_tag3_1") //식당에서 카페 관련 태그
-    private String r_tag3_1;
+    @Column(name = "Rtag3Cafe") //식당에서 카페 관련 태그
+    private String Rtag3Cafe;
 
-    @Column(name = "s_tag1") //쇼핑관련 태그
-    private String s_tag1;
+    @Column(name = "Stag1") //쇼핑관련 태그
+    private String Stag1;
 
-    @Column(name = "ct_tag4") //자연
-    private String ct_tag4;
+    @Column(name = "CTtag4") //자연
+    private String CTtag4;
 
-    @Column(name = "ct_tag2") //역사
-    private String ct_tag2;
+    @Column(name = "CTtag2") //역사
+    private String CTtag2;
 
-    @Column(name = "ct_tag3") //체험
-    private String ct_tag3;
+    @Column(name = "CTtag3") //체험
+    private String CTtag3;
 
-    @Column(name = "ct_tag1") //동적 / 정적 / 상관없음 알려주는 태그
-    private String ct_tag1;
+    @Column(name = "CTtag1") //동적 / 정적 / 상관없음 알려주는 태그
+    private String CTtag1;
 
-    @Column(name = "user_name") //여행객 이름
-    private String user_name;
+    @Column(name = "userName") //여행객 이름
+    private String userName;
 
-    @Column(name = "start_date") //여행 시작 날짜
-    private String start_date;
+    @Column(name = "startDate") //여행 시작 날짜
+    private String startDate;
 
-    @Column(name = "end_date") //여행 종료 날짜
-    private String end_date;
+    @Column(name = "endDate") //여행 종료 날짜
+    private String endDate;
 
-    //getter & setter
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getAndroid() {
@@ -68,100 +65,99 @@ public class UserInfo {
         this.android = android;
     }
 
-    public String getR_tag3() {
-        return r_tag3;
+    public String getRtag3() {
+        return Rtag3;
     }
 
-    public void setR_tag3(String r_tag3) {
-        this.r_tag3 = r_tag3;
+    public void setRtag3(String rtag3) {
+        Rtag3 = rtag3;
     }
 
-    public String getR_tag4() {
-        return r_tag4;
+    public String getRtag4() {
+        return Rtag4;
     }
 
-    public void setR_tag4(String r_tag4) {
-        this.r_tag4 = r_tag4;
+    public void setRtag4(String rtag4) {
+        Rtag4 = rtag4;
     }
 
-    public String getR_tag5() {
-        return r_tag5;
+    public String getRtag5() {
+        return Rtag5;
     }
 
-    public void setR_tag5(String r_tag5) {
-        this.r_tag5 = r_tag5;
+    public void setRtag5(String rtag5) {
+        Rtag5 = rtag5;
     }
 
-    public String getR_tag3_1() {
-        return r_tag3_1;
+    public String getRtag3Cafe() {
+        return Rtag3Cafe;
     }
 
-    public void setR_tag3_1(String r_tag3_1) {
-        this.r_tag3_1 = r_tag3_1;
+    public void setRtag3Cafe(String rtag3Cafe) {
+        Rtag3Cafe = rtag3Cafe;
     }
 
-    public String getS_tag1() {
-        return s_tag1;
+    public String getStag1() {
+        return Stag1;
     }
 
-    public void setS_tag1(String s_tag1) {
-        this.s_tag1 = s_tag1;
+    public void setStag1(String stag1) {
+        Stag1 = stag1;
     }
 
-    public String getCt_tag4() {
-        return ct_tag4;
+    public String getCTtag4() {
+        return CTtag4;
     }
 
-    public void setCt_tag4(String ct_tag4) {
-        this.ct_tag4 = ct_tag4;
+    public void setCTtag4(String CTtag4) {
+        this.CTtag4 = CTtag4;
     }
 
-    public String getCt_tag2() {
-        return ct_tag2;
+    public String getCTtag2() {
+        return CTtag2;
     }
 
-    public void setCt_tag2(String ct_tag2) {
-        this.ct_tag2 = ct_tag2;
+    public void setCTtag2(String CTtag2) {
+        this.CTtag2 = CTtag2;
     }
 
-    public String getCt_tag3() {
-        return ct_tag3;
+    public String getCTtag3() {
+        return CTtag3;
     }
 
-    public void setCt_tag3(String ct_tag3) {
-        this.ct_tag3 = ct_tag3;
+    public void setCTtag3(String CTtag3) {
+        this.CTtag3 = CTtag3;
     }
 
-    public String getCt_tag1() {
-        return ct_tag1;
+    public String getCTtag1() {
+        return CTtag1;
     }
 
-    public void setCt_tag1(String ct_tag1) {
-        this.ct_tag1 = ct_tag1;
+    public void setCTtag1(String CTtag1) {
+        this.CTtag1 = CTtag1;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getStart_date() {
-        return start_date;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(String start_date) {
-        this.start_date = start_date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public String getEnd_date() {
-        return end_date;
+    public String getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(String end_date) {
-        this.end_date = end_date;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
-
 }

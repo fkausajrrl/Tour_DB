@@ -5,14 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name ="Success")
 public class SuccessInfo {
-    @Id //pramary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int count;
-    @Column(name = "character_id")
-    private int character_id;
-
-    @Column(name = "title")
-    private String title;
 
     public int getCount() {
         return count;
@@ -21,14 +13,14 @@ public class SuccessInfo {
     public void setCount(int count) {
         this.count = count;
     }
-    public int getCharacter_id() {
-        return character_id;
+
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCharacter_id(int character_id) {
-        this.character_id = character_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-
 
     public String getTitle() {
         return title;
@@ -37,4 +29,15 @@ public class SuccessInfo {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Id //pramary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int count;
+    @Column(name = "userId")
+    private int userId;
+
+    @Column(name = "title")
+    private String title;
+
+
 }

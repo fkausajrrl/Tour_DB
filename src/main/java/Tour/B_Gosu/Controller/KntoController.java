@@ -24,31 +24,21 @@ public class KntoController {
     @Autowired
     private KorServiceInfoRepository korserviceInfoRepository;
     @Autowired
-    private CharacterInfoRepository characterInfoRepository;
-    @Autowired
     private UserInfoRepository userInfoRepository;
 
 //character_id 받아와서 character테이블에서 user_id조회 -> User table에서 user_id로 조회해서 가져오기
     @GetMapping("/restaurant") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getRestaurantsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1, @RequestParam("tag2") String tag2,
-                                                                     @RequestParam("character_id") int character_id) {
+                                                                     @RequestParam("userId") int userId) {
         String tag3, tag4, tag5;
-        int user_id; //user_id를 저장할 공간
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findById(String.valueOf(character_id)); // 캐릭터 table에서 조회
-        if (characterInfo.isPresent()) {
-            CharacterInfo ch_info = characterInfo.get();
-            user_id = ch_info.getUser_id(); //user_id를 가져올 수 있음.
-        } else {
-            // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
-            return ResponseEntity.notFound().build();
-        }
-        Optional<UserInfo> userInfo = userInfoRepository.findById(String.valueOf(user_id)); //user table에서 user_id로 조회
+
+        Optional<UserInfo> userInfo = userInfoRepository.findByUserId(userId); //user table에서 user_id로 조회
         if (userInfo.isPresent()) {
             UserInfo u_info = userInfo.get();
-            tag3 = u_info.getR_tag3();
-            tag4 = u_info.getR_tag4();
-            tag5 = u_info.getR_tag5();
+            tag3 = u_info.getRtag3();
+            tag4 = u_info.getRtag4();
+            tag5 = u_info.getRtag5();
         } else {
             // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
             return ResponseEntity.notFound().build();
@@ -67,7 +57,7 @@ public class KntoController {
                                 info.getTag5().contains(tag5)
                 )
                 .collect(Collectors.toList()));
-        System.out.println("count = " + filteredResultsSet.stream().count());
+        System.out.println("count = " + (long) filteredResultsSet.size());
 
         filteredResultsSet.addAll(restaurants.stream() //tag5 제외
                 .filter(info ->
@@ -77,7 +67,7 @@ public class KntoController {
                                 info.getTag4().contains(tag4)
                 )
                 .collect(Collectors.toList()));
-        System.out.println("count = " + filteredResultsSet.stream().count());
+        System.out.println("count = " + (long) filteredResultsSet.size());
 
         filteredResultsSet.addAll(restaurants.stream() //tag5, tag4 제외
                 .filter(info ->
@@ -86,7 +76,7 @@ public class KntoController {
                                 info.getTag3().contains(tag3)
                 )
                 .collect(Collectors.toList()));
-        System.out.println("count = " + filteredResultsSet.stream().count());
+        System.out.println("count = " + (long) filteredResultsSet.size());
 
         filteredResultsSet.addAll(restaurants.stream() //tag5, tag4, tag3 제외
                 .filter(info ->
@@ -94,14 +84,14 @@ public class KntoController {
                                 info.getTag2().contains(tag2)
                 )
                 .collect(Collectors.toList()));
-        System.out.println("count = " + filteredResultsSet.stream().count());
+        System.out.println("count = " + (long) filteredResultsSet.size());
 
         filteredResultsSet.addAll(restaurants.stream() //tag5, tag4, tag3, tag2 제외
                 .filter(info ->
                         info.getTag1().contains(tag1)
                 )
                 .collect(Collectors.toList()));
-        System.out.println("count = " + filteredResultsSet.stream().count());
+        System.out.println("count = " + (long) filteredResultsSet.size());
 
         List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
@@ -110,26 +100,17 @@ public class KntoController {
     }
     @GetMapping("/tour") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getTouristSpotsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
-                                                                      @RequestParam("character_id") int character_id) {
+                                                                      @RequestParam("userId") int userId) {
         String tag1, tag2, tag3, tag4;
-        int user_id;  //user_id를 저장할 공간
 
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findById(String.valueOf(character_id)); // 캐릭터 table에서 user_id 조회
-        if (characterInfo.isPresent()) {
-            CharacterInfo ch_info = characterInfo.get();
-            user_id = ch_info.getUser_id(); //user_id를 가져올 수 있음.
-        } else {
-            // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
-            return ResponseEntity.notFound().build();
-        }
-        Optional<UserInfo> userInfo = userInfoRepository.findById(String.valueOf(user_id));
+        Optional<UserInfo> userInfo = userInfoRepository.findByUserId(userId);
 
         if (userInfo.isPresent()) {
             UserInfo u_info = userInfo.get();
-            tag1 = u_info.getCt_tag1();
-            tag2 = u_info.getCt_tag2();
-            tag3 = u_info.getCt_tag3();
-            tag4 = u_info.getCt_tag4();
+            tag1 = u_info.getCTtag1();
+            tag2 = u_info.getCTtag2();
+            tag3 = u_info.getCTtag3();
+            tag4 = u_info.getCTtag4();
         } else {
             // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
             return ResponseEntity.notFound().build();
@@ -178,26 +159,17 @@ public class KntoController {
     }
     @GetMapping("/cultural") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getCulturalPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
-                                                                        @RequestParam("character_id") int character_id) {
-        int user_id;  //user_id를 저장할 공간
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findById(String.valueOf(character_id)); // 캐릭터 table에서 user_id 조회
+                                                                        @RequestParam("userId") int userId) {
 
-        if (characterInfo.isPresent()) {
-            CharacterInfo ch_info = characterInfo.get();
-            user_id = ch_info.getUser_id(); //user_id를 가져올 수 있음.
-        } else {
-            // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
-            return ResponseEntity.notFound().build();
-        }
-        Optional<UserInfo> userInfo = userInfoRepository.findById(String.valueOf(user_id));
+        Optional<UserInfo> userInfo = userInfoRepository.findByUserId(userId);
         String tag1, tag2, tag3, tag4;
 
         if (userInfo.isPresent()) {
             UserInfo u_info = userInfo.get();
-            tag1 = u_info.getCt_tag1();
-            tag2 = u_info.getCt_tag2();
-            tag3 = u_info.getCt_tag3();
-            tag4 = u_info.getCt_tag4();
+            tag1 = u_info.getCTtag1();
+            tag2 = u_info.getCTtag2();
+            tag3 = u_info.getCTtag3();
+            tag4 = u_info.getCTtag4();
         } else {
             // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
             return ResponseEntity.notFound().build();
@@ -246,25 +218,16 @@ public class KntoController {
     }
     @GetMapping("/shopping") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getShoppingPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
-                                                                        @RequestParam("character_id") int character_id) {
-        int user_id;  //user_id를 저장할 공간
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findById(String.valueOf(character_id)); // 캐릭터 table에서 user_id 조회
+                                                                        @RequestParam("userId") int userId) {
 
-        if (characterInfo.isPresent()) {
-            CharacterInfo ch_info = characterInfo.get();
-            user_id = ch_info.getUser_id(); //user_id를 가져올 수 있음.
-        } else {
-            // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
-            return ResponseEntity.notFound().build();
-        }
-        Optional<UserInfo> userInfo = userInfoRepository.findById(String.valueOf(user_id));
+        Optional<UserInfo> userInfo = userInfoRepository.findByUserId(userId);
         String tag1;
         String[] tag_s = new String[5];
         int mapping_count = 0;
 
         if (userInfo.isPresent()) {
             UserInfo answer = userInfo.get();
-            tag1 = answer.getS_tag1();
+            tag1 = answer.getStag1();
             switch (tag1) {
                 case "1":  //명품
                     mapping_count = 1;
@@ -305,8 +268,8 @@ public class KntoController {
                     .filter(info ->
                             info.getTag1().contains(tag_a)
                     )
-                    .collect(Collectors.toList()));
-            System.out.println("count = " + filteredResultsSet.stream().count());
+                    .toList());
+            System.out.println("count = " + (long) filteredResultsSet.size());
         }
         List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
@@ -325,8 +288,8 @@ public class KntoController {
                 .filter(info ->
                         info.getTag1().contains(tag1)
                 )
-                .collect(Collectors.toList()));
-        System.out.println("count = " + enjoyPlaces2.stream().count());
+                .toList());
+        System.out.println("count = " + (long) enjoyPlaces2.size());
 
         return new ResponseEntity<>(enjoyPlaces2, HttpStatus.OK);
     }

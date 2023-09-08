@@ -5,75 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name ="knto")
 public class KorServiceInfo {
-    @Id //pramary key
-    @Column(name = "title")
-    private String title;
 
-    @Column(name = "title_jp")
-    private String title_jp;
-
-    @Column(name = "title_en")
-    private String title_en;
-
-    @Column(name = "title_ch")
-    private String title_ch;
-
-    @Column(name = "addr1")
-    private String addr1;
-
-    @Column(name = "addr2")
-    private String addr2;
-
-    @Column(name = "contenttypeid")
-    private String contenttypeid;
-
-    @Column(name = "firstimage")
-    private String firstimage;
-
-    @Column(name = "firstimage2")
-    private String firstimage2;
-
-    @Column(name = "mapx")
-    private String mapx;
-
-    @Column(name = "mapy")
-    private String mapy;
-
-    @Column(name = "sigungucode")
-    private String sigungucode;
-
-    @Column(name = "tel")
-    private String tel;
-
-    //mydb
-    @Column(name = "character_id")
-    private int character_id;
-
-    @Column(name = "contants")
-    private String contants;
-
-    @Column(name = "tag1")
-    private String tag1;
-
-    @Column(name = "tag2")
-    private String tag2;
-
-    @Column(name = "tag3")
-    private String tag3;
-
-    @Column(name = "tag4")
-    private String tag4;
-
-    @Column(name = "tag5")
-    private String tag5;
-
-    @Column(name = "menu")
-    private String menu;
-
-    @Column(name = "top10")
-    private int top10;
-
-    //getter/setter methods
     public String getTitle() {
         return title;
     }
@@ -82,29 +14,28 @@ public class KorServiceInfo {
         this.title = title;
     }
 
-
-    public String getTitle_jp() {
-        return title_jp;
+    public String getTitleJp() {
+        return titleJp;
     }
 
-    public void setTitle_jp(String title_jp) {
-        this.title_jp = title_jp;
+    public void setTitleJp(String titleJp) {
+        this.titleJp = titleJp;
     }
 
-    public String getTitle_en() {
-        return title_en;
+    public String getTitleEn() {
+        return titleEn;
     }
 
-    public void setTitle_en(String title_en) {
-        this.title_en = title_en;
+    public void setTitleEn(String titleEn) {
+        this.titleEn = titleEn;
     }
 
-    public String getTitle_ch() {
-        return title_ch;
+    public String getTitleCh() {
+        return titleCh;
     }
 
-    public void setTitle_ch(String title_ch) {
-        this.title_ch = title_ch;
+    public void setTitleCh(String titleCh) {
+        this.titleCh = titleCh;
     }
 
     public String getAddr1() {
@@ -179,14 +110,6 @@ public class KorServiceInfo {
         this.tel = tel;
     }
 
-    public int getCharacter_id() {
-        return character_id;
-    }
-
-    public void setCharacter_id(int character_id) {
-        this.character_id = character_id;
-    }
-
     public String getContants() {
         return contants;
     }
@@ -242,6 +165,7 @@ public class KorServiceInfo {
     public void setMenu(String menu) {
         this.menu = menu;
     }
+
     public int getTop10() {
         return top10;
     }
@@ -249,4 +173,71 @@ public class KorServiceInfo {
     public void setTop10(int top10) {
         this.top10 = top10;
     }
+
+    @Id //pramary key
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "titleJp")
+    private String titleJp;
+
+    @Column(name = "titleEn")
+    private String titleEn;
+
+    @Column(name = "titleCh")
+    private String titleCh;
+
+    @Column(name = "addr1")
+    private String addr1;
+
+    @Column(name = "addr2")
+    private String addr2;
+
+    @Column(name = "contenttypeid")
+    private String contenttypeid;
+
+    @Column(name = "firstimage")
+    private String firstimage;
+
+    @Column(name = "firstimage2")
+    private String firstimage2;
+
+    @Column(name = "mapx")
+    private String mapx;
+
+    @Column(name = "mapy")
+    private String mapy;
+
+    @Column(name = "sigungucode")
+    private String sigungucode;
+
+    @Column(name = "tel")
+    private String tel;
+
+    //mydb
+    @Column(name = "contants")
+    private String contants;
+
+    @Column(name = "tag1")
+    private String tag1;
+
+    @Column(name = "tag2")
+    private String tag2;
+
+    @Column(name = "tag3")
+    private String tag3;
+
+    @Column(name = "tag4")
+    private String tag4;
+
+    @Column(name = "tag5")
+    private String tag5;
+
+    @Column(name = "menu")
+    private String menu;
+
+    @Column(name = "top10")
+    private int top10;
+
+
 }

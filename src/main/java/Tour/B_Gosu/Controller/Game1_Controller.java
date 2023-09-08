@@ -19,13 +19,13 @@ public class Game1_Controller {
         this.game1_infoService = game1_infoService;
     }
     @PostMapping("/save")
-    public ResponseEntity<String> saveGameData(@RequestParam("character_id") int character_id, @RequestParam("total_score1") int total_score1,
-                                               @RequestParam("max_score1") int max_score1,@RequestParam("total_money1") int total_money1){
+    public ResponseEntity<String> saveGameData(@RequestParam("userId") int userId, @RequestParam("totalScore1") int totalScore1,
+                                               @RequestParam("maxScore1") int maxScore1,@RequestParam("totalMoney1") int totalMoney1){
         Game1 game1 = new Game1();
-        game1.setCharacter_id(character_id);
-        game1.setTotal_score1(total_score1);
-        game1.setTotal_score1(max_score1);
-        game1.setTotal_money1(total_money1);
+        game1.setUserId(userId);
+        game1.setTotalScore1(totalScore1);
+        game1.setTotalScore1(maxScore1);
+        game1.setTotalMoney1(totalMoney1);
 
         game1_infoService.save(game1);
         return ResponseEntity.ok("데이터 저장 완료");

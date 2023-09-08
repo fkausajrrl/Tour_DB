@@ -2,12 +2,9 @@ package Tour.B_Gosu.Controller;
 
 import Tour.B_Gosu.Entity.KorServiceInfo;
 import Tour.B_Gosu.Service.KorServiceInfoService;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -48,9 +45,9 @@ public class KorServiceInfoController {
                 // 각 요소들을 순회하면서 필요한 필드들을 추출하여 새로운 KorServiceInfo 객체로 변환
                 for (JsonNode item : itemArray) {
                     String title = item.get("title").asText();
-                    String title_jp = item.has("title_jp") ? item.get("title_jp").asText() : ""; //필드 값 없을시 ' ' 공백 입력
-                    String title_en = item.has("title_en") ? item.get("title_en").asText() : ""; //필드 값 없을시 ' ' 공백 입력
-                    String title_ch = item.has("title_ch") ? item.get("title_ch").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String titleJp = item.has("titleJp") ? item.get("titleJp").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String titleEn = item.has("titleEn") ? item.get("titleEn").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String titleCh = item.has("titleCh") ? item.get("titleCh").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String addr1 = item.get("addr1").asText();
                     String addr2 = item.get("addr2").asText();
                     String contenttypeid = item.get("contenttypeid").asText();
@@ -71,9 +68,9 @@ public class KorServiceInfoController {
                     // 필요한 필드들로 새로운 KorServiceInfo 객체를 생성
                     KorServiceInfo korServiceInfo = new KorServiceInfo();
                     korServiceInfo.setTitle(title);
-                    korServiceInfo.setTitle_jp(title_jp);
-                    korServiceInfo.setTitle_en(title_en);
-                    korServiceInfo.setTitle_ch(title_ch);
+                    korServiceInfo.setTitleJp(titleJp);
+                    korServiceInfo.setTitleEn(titleEn);
+                    korServiceInfo.setTitleCh(titleCh);
                     korServiceInfo.setAddr1(addr1);
                     korServiceInfo.setAddr2(addr2);
                     korServiceInfo.setContenttypeid(contenttypeid);
@@ -91,12 +88,10 @@ public class KorServiceInfoController {
                     korServiceInfo.setTag5(tag5);
                     korServiceInfo.setMenu(menu);
 
-
                     // 새로운 KorServiceInfo 객체를 List에 추가
                     korServiceInfos.add(korServiceInfo);
                 }
             }
-
             return korServiceInfos;
         } catch (IOException e) {
             e.printStackTrace();
