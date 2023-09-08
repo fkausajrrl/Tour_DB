@@ -5,15 +5,15 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name ="m_user")
+@Table(name ="user")
 public class UserInfo {
     //이 Entity는 프론트로부터 받아오는 정보 저장 용도 테이블 설계
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //안드로이드 시리얼 넘버의 대조키 -> 별명 같은 개념
     private int user_id;
 
-    @Column(name = "android_id") //안드로이드 시리얼 넘버
-    private String android_id;
+    @Column(name = "android") //안드로이드 시리얼 넘버
+    private String android;
 
     @Column(name = "r_tag3") //한중일양 선택
     private String r_tag3;
@@ -42,8 +42,8 @@ public class UserInfo {
     @Column(name = "ct_tag1") //동적 / 정적 / 상관없음 알려주는 태그
     private String ct_tag1;
 
-    @Column(name = "name") //여행객 이름
-    private String name;
+    @Column(name = "user_name") //여행객 이름
+    private String user_name;
 
     @Column(name = "start_date") //여행 시작 날짜
     private String start_date;
@@ -60,12 +60,12 @@ public class UserInfo {
         this.user_id = user_id;
     }
 
-    public String getAndroid_id() {
-        return android_id;
+    public String getAndroid() {
+        return android;
     }
 
-    public void setAndroid_id(String android_id) {
-        this.android_id = android_id;
+    public void setAndroid(String android) {
+        this.android = android;
     }
 
     public String getR_tag3() {
@@ -140,12 +140,12 @@ public class UserInfo {
         this.ct_tag1 = ct_tag1;
     }
 
-    public String getName() {
-        return name;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getStart_date() {

@@ -35,11 +35,11 @@ public class FindInfoController {
     }
 
     @PostMapping("/accept")
-    public ResponseEntity<String> challengeAccept(@RequestParam("answer_id") String answer_id, @RequestParam("title") String title) {
+    public ResponseEntity<String> challengeAccept(@RequestParam("character_id") int character_id, @RequestParam("title") String title) {
         KorServiceInfo firstKorServiceInfo = korserviceInfoRepository.findByTitle(title);
 
         FindInfo findInfo = new FindInfo();
-        findInfo.setAnswer_id(answer_id);
+        findInfo.setCharacter_id(character_id);
         findInfo.setTitle(firstKorServiceInfo.getTitle());
         findInfo.setTitle_jp(firstKorServiceInfo.getTitle_jp());
         findInfo.setTitle_en(firstKorServiceInfo.getTitle_en());
@@ -68,9 +68,9 @@ public class FindInfoController {
     }
 
     @GetMapping("/check")
-    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("answer_id") String answer_id) {
+    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("character_id") int character_id) {
         //successInfoRepository에 있는 쿼리 호출하는 부분 추가
-        Optional<FindInfo> challange_findInfo = findInfoRepository.findById(answer_id);
+        Optional<FindInfo> challange_findInfo = findInfoRepository.findById(String.valueOf(character_id));
 
 
         if (challange_findInfo.isPresent()) {
@@ -79,7 +79,7 @@ public class FindInfoController {
             SuccessInfo s_info = new SuccessInfo();
 
             s_info.setTitle(challange_findInfo.get().getTitle());
-            s_info.setAnswer_id(answer_id);
+            s_info.setCharacter_id(character_id);
 
             successInfoService.save(s_info);
 
