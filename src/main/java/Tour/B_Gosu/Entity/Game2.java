@@ -9,48 +9,49 @@ import jakarta.persistence.Table;
 @Table(name ="game2")
 public class Game2 {
 
+    public int getCharacterid() {
+        return characterid;
+    }
+
+    public void setCharacterid(int characterid) {
+        this.characterid = characterid;
+    }
+
+    public int getMax_score2() {
+        return max_score2;
+    }
+
+    public void setMax_score2(int max_score2) {
+        this.max_score2 = max_score2;
+    }
+
+    public int getTotal_score2() {
+        return total_score2;
+    }
+
+    public void setTotal_score2(int total_score2) {
+        this.total_score2 = total_score2;
+    }
+
+    public int getTotal_money2() {
+        return total_money2;
+    }
+
+    public void setTotal_money2(int total_money2) {
+        this.total_money2 = total_money2;
+    }
+
     @Id //pramary key
-    @Column(name = "userId")
-    private int userId;
+    @Column(name = "characterid")
+    private int characterid;
 
-    @Column(name = "maxScore2")
-    private int maxScore2;
+    @Column(name = "max_score2")
+    private int max_score2;
 
-    @Column(name = "totalScore2")
-    private int totalScore2;
+    @Column(name = "total_score2")
+    private int total_score2;
 
-    @Column(name = "totalMoney2")
-    private int totalMoney2;
+    @Column(name = "total_money2")
+    private int total_money2;
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getMaxScore2() {
-        return maxScore2;
-    }
-
-    public void setMaxScore2(int maxScore2) {
-        this.maxScore2 = maxScore2;
-    }
-
-    public int getTotalScore2() {
-        return totalScore2;
-    }
-
-    public void setTotalScore2(int totalScore2) {
-        this.totalScore2 = totalScore2;
-    }
-
-    public int getTotalMoney2() {
-        return totalMoney2;
-    }
-
-    public void setTotalMoney2(int totalMoney2) {
-        this.totalMoney2 = totalMoney2;
-    }
 }

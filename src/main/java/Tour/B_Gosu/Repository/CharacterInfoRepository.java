@@ -9,5 +9,9 @@ import java.util.Optional;
 @Repository
 public interface CharacterInfoRepository extends JpaRepository<CharacterInfo, String> {
 
-    Optional<CharacterInfo> findByUserId(int s);
+    Optional<CharacterInfo> findByUserid(int s);
+
+    Optional<CharacterInfo> findByCharacterid(int ch);
+
+    Optional<CharacterInfo> findTopByUseridOrderByCharacteridDesc(int userId);
 }

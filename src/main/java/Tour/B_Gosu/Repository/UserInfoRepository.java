@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 @Repository
 public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
-    @Query(value = "SELECT * FROM users\n" +
-            "WHERE userId = :numbers AND \n" +
-            "      StartDate = :sDate", nativeQuery = true)
-    Optional<UserInfo>  findMyuser(String numbers, String sDate);
+    @Query(value = "SELECT * FROM myuser\n" +
+            "WHERE android = :numbers AND\n" +
+            "start_date =:s_date", nativeQuery = true)
+    Optional<UserInfo> findMyuser(String numbers, String s_date);
 
-    Optional<UserInfo> findByUserId(int userId);
+    Optional<UserInfo> findByUserid(int userid);
+
+    Optional<UserInfo> findByAndroid(String android);
 }

@@ -6,20 +6,20 @@ import jakarta.persistence.*;
 @Table(name ="find")
 public class FindInfo {
     @Id //pramary key
-    @Column(name = "userId")
-    private int userId;
+    @Column(name = "characterid")
+    private int characterid;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "titleJp")
-    private String titleJp;
+    @Column(name = "title_jp")
+    private String title_jp;
 
-    @Column(name = "titleEn")
-    private String titleEn;
+    @Column(name = "title_en")
+    private String title_en;
 
-    @Column(name = "titleCh")
-    private String titleCh;
+    @Column(name = "title_ch")
+    private String title_ch;
 
     @Column(name = "addr1")
     private String addr1;
@@ -74,12 +74,12 @@ public class FindInfo {
     @Column(name = "top10")
     private int top10;
 
-    public int getUserId() {
-        return userId;
+    public int getCharacterid() {
+        return characterid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setCharacterid(int characterid) {
+        this.characterid = characterid;
     }
 
     public String getTitle() {
@@ -90,28 +90,28 @@ public class FindInfo {
         this.title = title;
     }
 
-    public String getTitleJp() {
-        return titleJp;
+    public String getTitle_jp() {
+        return title_jp;
     }
 
-    public void setTitleJp(String titleJp) {
-        this.titleJp = titleJp;
+    public void setTitle_jp(String title_jp) {
+        this.title_jp = title_jp;
     }
 
-    public String getTitleEn() {
-        return titleEn;
+    public String getTitle_en() {
+        return title_en;
     }
 
-    public void setTitleEn(String titleEn) {
-        this.titleEn = titleEn;
+    public void setTitle_en(String title_en) {
+        this.title_en = title_en;
     }
 
-    public String getTitleCh() {
-        return titleCh;
+    public String getTitle_ch() {
+        return title_ch;
     }
 
-    public void setTitleCh(String titleCh) {
-        this.titleCh = titleCh;
+    public void setTitle_ch(String title_ch) {
+        this.title_ch = title_ch;
     }
 
     public String getAddr1() {

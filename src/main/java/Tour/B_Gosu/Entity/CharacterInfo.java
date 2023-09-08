@@ -3,23 +3,15 @@ package Tour.B_Gosu.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name ="characters")
+@Table(name = "characters")
 public class CharacterInfo {
 
-    public int getCharacterId() {
-        return characterId;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setCharacterId(int characterId) {
-        this.characterId = characterId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public int getType() {
@@ -30,33 +22,41 @@ public class CharacterInfo {
         this.type = type;
     }
 
-    public String getCharacterName() {
-        return characterName;
+    public String getCharacter_name() {
+        return character_name;
     }
 
-    public void setCharacterName(String characterName) {
-        this.characterName = characterName;
+    public void setCharacter_name(String character_name) {
+        this.character_name = character_name;
     }
 
-    public int getCurrentMoney() {
-        return currentMoney;
+    public int getCurrent_money() {
+        return current_money;
     }
 
-    public void setCurrentMoney(int currentMoney) {
-        this.currentMoney = currentMoney;
+    public void setCurrent_money(int current_money) {
+        this.current_money = current_money;
+    }
+
+    public int getCharacterid() {
+        return characterid;
+    }
+
+    public void setCharacterid(int characterid) {
+        this.characterid = characterid;
     }
 
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int characterId;
-    @Column(name = "userId")
-    private int userId;
+    private int characterid;
+    @Column(name = "userid")
+    private int userid;
     @Column(name = "type")
     private int type;
-    @Column(name = "characterName")
-    private String characterName;
-    @Column(name = "currentMoney")
-    private int currentMoney;
+    @Column(name = "character_name")
+    private String character_name;
+    @Column(name = "current_money")
+    private int current_money;
 
 
 }

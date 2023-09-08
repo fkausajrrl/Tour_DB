@@ -45,9 +45,9 @@ public class KorServiceInfoController {
                 // 각 요소들을 순회하면서 필요한 필드들을 추출하여 새로운 KorServiceInfo 객체로 변환
                 for (JsonNode item : itemArray) {
                     String title = item.get("title").asText();
-                    String titleJp = item.has("titleJp") ? item.get("titleJp").asText() : ""; //필드 값 없을시 ' ' 공백 입력
-                    String titleEn = item.has("titleEn") ? item.get("titleEn").asText() : ""; //필드 값 없을시 ' ' 공백 입력
-                    String titleCh = item.has("titleCh") ? item.get("titleCh").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_jp = item.has("titleJp") ? item.get("titleJp").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_en = item.has("titleEn") ? item.get("titleEn").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_ch = item.has("titleCh") ? item.get("titleCh").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String addr1 = item.get("addr1").asText();
                     String addr2 = item.get("addr2").asText();
                     String contenttypeid = item.get("contenttypeid").asText();
@@ -68,9 +68,9 @@ public class KorServiceInfoController {
                     // 필요한 필드들로 새로운 KorServiceInfo 객체를 생성
                     KorServiceInfo korServiceInfo = new KorServiceInfo();
                     korServiceInfo.setTitle(title);
-                    korServiceInfo.setTitleJp(titleJp);
-                    korServiceInfo.setTitleEn(titleEn);
-                    korServiceInfo.setTitleCh(titleCh);
+                    korServiceInfo.setTitle_jp(title_jp);
+                    korServiceInfo.setTitle_en(title_en);
+                    korServiceInfo.setTitle_ch(title_ch);
                     korServiceInfo.setAddr1(addr1);
                     korServiceInfo.setAddr2(addr2);
                     korServiceInfo.setContenttypeid(contenttypeid);

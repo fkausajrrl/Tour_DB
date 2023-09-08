@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name ="statistics")
 public class StatisticsInfo {
+
     public int getCount() {
         return count;
     }

@@ -2,7 +2,6 @@ package Tour.B_Gosu.Controller;
 
 import Tour.B_Gosu.Entity.FindInfo;
 import Tour.B_Gosu.Entity.KorServiceInfo;
-import Tour.B_Gosu.Entity.SuccessInfo;
 import Tour.B_Gosu.Repository.FindInfoRepository;
 import Tour.B_Gosu.Repository.KorServiceInfoRepository;
 import Tour.B_Gosu.Repository.SuccessInfoRepository;
@@ -11,8 +10,6 @@ import Tour.B_Gosu.Service.SuccessInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/bgosu/api/challenge")
@@ -35,15 +32,15 @@ public class FindInfoController {
     }
 
     @PostMapping("/accept")
-    public ResponseEntity<String> challengeAccept(@RequestParam("userId") int userId, @RequestParam("title") String title) {
+    public ResponseEntity<String> challengeAccept(@RequestParam("characterid") int characterid, @RequestParam("title") String title) {
         KorServiceInfo firstKorServiceInfo = korserviceInfoRepository.findByTitle(title);
 
         FindInfo findInfo = new FindInfo();
-        findInfo.setUserId(userId);
+        findInfo.setCharacterid(characterid);
         findInfo.setTitle(firstKorServiceInfo.getTitle());
-        findInfo.setTitleJp(firstKorServiceInfo.getTitleJp());
-        findInfo.setTitleEn(firstKorServiceInfo.getTitleEn());
-        findInfo.setTitleCh(firstKorServiceInfo.getTitleCh());
+        findInfo.setTitle_jp(firstKorServiceInfo.getTitle_jp());
+        findInfo.setTitle_en(firstKorServiceInfo.getTitle_en());
+        findInfo.setTitle_ch(firstKorServiceInfo.getTitle_ch());
         findInfo.setAddr1(firstKorServiceInfo.getAddr1());
         findInfo.setAddr2(firstKorServiceInfo.getAddr2());
         findInfo.setContenttypeid(firstKorServiceInfo.getContenttypeid());
@@ -78,7 +75,7 @@ public class FindInfoController {
 //            SuccessInfo s_info = new SuccessInfo();
 //
 //            s_info.setTitle(challange_findInfo.get().getTitle());
-//            s_info.setCharacterId(character_id);
+//            s_info.setCharacterid(character_id);
 //
 //            successInfoService.save(s_info);
 //

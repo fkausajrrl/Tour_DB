@@ -14,12 +14,12 @@ public class SuccessInfo {
         this.count = count;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getCharacterid() {
+        return characterid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setCharacterid(int characterid) {
+        this.characterid = characterid;
     }
 
     public String getTitle() {
@@ -33,8 +33,8 @@ public class SuccessInfo {
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int count;
-    @Column(name = "userId")
-    private int userId;
+    @Column(name = "characterid")
+    private int characterid;
 
     @Column(name = "title")
     private String title;
