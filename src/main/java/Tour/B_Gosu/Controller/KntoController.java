@@ -32,9 +32,9 @@ public class KntoController {
     @GetMapping("/restaurant") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getRestaurantsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1, @RequestParam("tag2") String tag2,
-                                                                     @RequestParam("character_id") int character_id) {
+                                                                     @RequestParam("characterid") int characterid) {
         int userid = 0;
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(character_id);
+        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
         if(characterInfo.isPresent()){
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
@@ -53,7 +53,7 @@ public class KntoController {
             // 해당 answer_id에 대한 데이터가 없을 경우 적절한 응답 반환
             return ResponseEntity.notFound().build();
         }
-        List<KorServiceInfo> restaurants = korserviceInfoRepository.findRestaurantsNearby(mapx, mapy, tag1, tag2); // 레포지토리에서 가져오는 로직
+        List<KorServiceInfo> restaurants = korserviceInfoRepository.findRestaurantsNearby(mapx, mapy); // 레포지토리에서 가져오는 로직
         // 필터링 로직
         // 정렬한거 프론트 쪽에서 뽑아내는거 가능하다고 한 것 같은데 확인 필요.
         Set<KorServiceInfo> filteredResultsSet = new LinkedHashSet<>(); //순서 정렬
@@ -110,9 +110,9 @@ public class KntoController {
     }
     @GetMapping("/tour") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getTouristSpotsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
-                                                                      @RequestParam("character_id") int character_id) {
+                                                                      @RequestParam("characterid") int characterid) {
         int userid = 0;
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(character_id);
+        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
         if(characterInfo.isPresent()){
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
@@ -177,9 +177,9 @@ public class KntoController {
     }
     @GetMapping("/cultural") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getCulturalPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
-                                                                        @RequestParam("character_id") int character_id) {
+                                                                        @RequestParam("characterid") int characterid) {
         int userid = 0;
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(character_id);
+        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
         if(characterInfo.isPresent()){
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
@@ -244,9 +244,9 @@ public class KntoController {
     }
     @GetMapping("/shopping") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getShoppingPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
-                                                                        @RequestParam("character_id") int character_id) {
+                                                                        @RequestParam("characterid") int characterid) {
         int userid = 0;
-        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(character_id);
+        Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
         if(characterInfo.isPresent()){
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
@@ -314,7 +314,7 @@ public class KntoController {
     public ResponseEntity<List<KorServiceInfo>> getenjoyPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1) {
 
-        List<KorServiceInfo> enjoyPlaces = korserviceInfoRepository.findEnjoyPlacesNearby(mapx, mapy, tag1);
+        List<KorServiceInfo> enjoyPlaces = korserviceInfoRepository.findEnjoyPlacesNearby(mapx, mapy);
 
         List<KorServiceInfo> enjoyPlaces2 = new ArrayList<>();
 

@@ -6,47 +6,47 @@ import jakarta.persistence.*;
 @Table(name ="knto")
 public class KorServiceInfo {
     @Id //pramary key
-    @Column(name = "title")
+    @Column(name = "title") //title
     private String title;
 
-    @Column(name = "title_jp")
+    @Column(name = "title_jp") //title_jp
     private String title_jp;
 
-    @Column(name = "title_en")
+    @Column(name = "title_en") //title_en
     private String title_en;
 
-    @Column(name = "title_ch")
+    @Column(name = "title_ch") //title_ch
     private String title_ch;
 
-    @Column(name = "addr1")
+    @Column(name = "addr1") //도로명 주소.
     private String addr1;
 
-    @Column(name = "addr2")
+    @Column(name = "addr2") //지번 주소
     private String addr2;
 
-    @Column(name = "contenttypeid")
+    @Column(name = "contenttypeid") //음식점(39) / 문화지(14) / 관광지(12) / 쇼핑(38) / 오락(11)
     private String contenttypeid;
 
-    @Column(name = "firstimage")
+    @Column(name = "firstimage") // 이미지 1
     private String firstimage;
 
-    @Column(name = "firstimage2")
+    @Column(name = "firstimage2") //이미지 2 => 이미지 1 조금 작아진 버전
     private String firstimage2;
 
-    @Column(name = "mapx")
+    @Column(name = "mapx") //mapx
     private String mapx;
 
-    @Column(name = "mapy")
+    @Column(name = "mapy") //mapy
     private String mapy;
 
-    @Column(name = "sigungucode")
+    @Column(name = "sigungucode") //시군구 구분 코드
     private String sigungucode;
 
-    @Column(name = "tel")
+    @Column(name = "tel") //전화번호.
     private String tel;
 
     //mydb
-    @Column(name = "contants")
+    @Column(name = "contants") //챌린지 내용 -> 이 칼럼 비어있으면 (title)가서 (menu)먹어보기
     private String contants;
 
     @Column(name = "tag1")
@@ -64,10 +64,10 @@ public class KorServiceInfo {
     @Column(name = "tag5")
     private String tag5;
 
-    @Column(name = "menu")
+    @Column(name = "menu") //대표 메뉴
     private String menu;
 
-    @Column(name = "top10")
+    @Column(name = "top10") //인기 챌린지 보여주는 용도인데 할려고 할때 활성화 시키면 됨
     private int top10;
 
     public String getTitle() {

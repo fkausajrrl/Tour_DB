@@ -14,7 +14,7 @@ public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, 
             "WHERE contenttypeid = 39 AND \n" +
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
             "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
-    List<KorServiceInfo> findRestaurantsNearby(double mapx, double mapy, String tag1, String tag2);
+    List<KorServiceInfo> findRestaurantsNearby(double mapx, double mapy);
 
     @Query(value = "SELECT * FROM knto\n" +
             "WHERE contenttypeid = 12 AND \n" +
@@ -38,7 +38,7 @@ public interface KorServiceInfoRepository extends JpaRepository<KorServiceInfo, 
             "WHERE contenttypeid = 11 AND\n" +
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
             "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) <= 2;", nativeQuery = true)
-    List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY, String tag1);
+    List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY);
 
     KorServiceInfo findByTitle(String title);
 
