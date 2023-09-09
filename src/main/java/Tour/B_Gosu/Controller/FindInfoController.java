@@ -83,6 +83,7 @@ public class FindInfoController {
         }
 
     }
+//챌린지 성공 -> 돈 current_money랑 total_money에 추가해서 주기
 
 //    @PostMapping("/check")
 //    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("characterid") int characterid) {

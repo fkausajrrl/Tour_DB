@@ -33,6 +33,7 @@ public class GameController {
         Game2 game2 = game2InfoRepository.findByCharacterid(characterid); // game2 테이블에서 정보 조회
 
         GameInfo gameinfo = new GameInfo();
+        gameinfo.setCharacterid(characterid);
         gameinfo.setType(character.get().getType());
         gameinfo.setCharacter_name(character.get().getCharacter_name());
         gameinfo.setCurrent_money(character.get().getCurrent_money());
@@ -61,5 +62,26 @@ public class GameController {
             // character가 존재하지 않을 경우 에러 응답을 반환합니다.
             return ResponseEntity.ok("I");
         }
+    }
+
+    @PostMapping("/save/item") //GameInfo 객체 받아서 item저장하고
+    public ResponseEntity<String> gameItemSave(@RequestParam("gameInfo") GameInfo gameInfo){
+
+        Optional<CharacterInfo> character = characterInfoRepository.findByCharacterid(gameInfo.getCharacterid()); // character 테이블에서 정보 조회
+        ItemInfo item = itemInfoRepository.findByCharacterid(gameInfo.getCharacterid()); // item 테이블에서 정보 조회
+
+        item.setHead_fir(gameInfo.getHead_fir());
+        item.setHead_sec(gameInfo.getHead_sec());
+        item.setHead_thr(gameInfo.getHead_thr());
+        item.setNeck_fir(gameInfo.getNeck_fir());
+        item.setNeck_sec(gameInfo.getNeck_sec());
+        item.setHand_fir(gameInfo.getHand_fir());
+        item.setHand_sec(gameInfo.getHand_sec());
+        itemInfoRepository.save(item);
+
+        character.get().setCurrent_money(gameInfo.getCurrent_money());
+        characterInfoRepository.save(character.get());
+
+        return ResponseEntity.ok("N"); // item 변경사항 저장하고 현재 돈도 저장 완료
     }
 }
