@@ -96,11 +96,16 @@ public class UserController {
         Optional<UserInfo> userInfo = userInfoRepository.findMyuser(android, start_date);
 
         if (userInfo.isPresent()) {
-            Integer userId = userInfo.get().getUserid();
+            int type;
+            do {
+                type = ThreadLocalRandom.current().nextInt(1, 4); // 1 이상 4 미만
+            } while (type == 0);
+
+            int userId = userInfo.get().getUserid();
             // 사용자 정보가 존재하면 user_id를 가져옵니다.   //첫 로그인 시 Character 객체 생성
             CharacterInfo characterInfo = new CharacterInfo();
             characterInfo.setUserid(userId);
-            characterInfo.setType(0);
+            characterInfo.setType(type);
             characterInfo.setCurrent_money(0);
             characterInfoRepository.save(characterInfo); //캐릭터 생성
 
@@ -112,4 +117,4 @@ public class UserController {
             return ResponseEntity.ok("E");
         }
     }
-}
+}//승환이안테 type 주는거 이걸 캐릭터 테이블 생성할때 랜덤해서 넣어놔야댐
