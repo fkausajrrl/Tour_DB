@@ -17,7 +17,7 @@ public class Game2_Controller {
     public Game2_Controller(Game2_InfoService game2_infoService) {
         this.game2_infoService = game2_infoService;
     }
-    @PostMapping("/save")
+    @PostMapping("/save") //characterid, score2, money
     public ResponseEntity<String> saveGameData(@RequestParam("characterid") int characterid, @RequestParam("total_score2") int total_score2,
                                                @RequestParam("max_score2") int max_score2,@RequestParam("total_money2") int total_money2){
         Game2 game2 = new Game2();

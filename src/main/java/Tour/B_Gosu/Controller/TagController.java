@@ -23,7 +23,6 @@ public class TagController {
         List<KorServiceInfo> restaurants = korserviceInfoRepository.findRestaurantsNearby(mapx, mapy); // 레포지토리에서 가져오는 로직
         return new ResponseEntity<>(restaurants, HttpStatus.OK);
     }
-
     @GetMapping("/tour")
     public ResponseEntity<List<KorServiceInfo>> getTour_CalSpotsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy) {
         List<KorServiceInfo> touristSpots = korserviceInfoRepository.findTouristSpotsNearby(mapx, mapy);
