@@ -6,10 +6,7 @@ import Tour.B_Gosu.Repository.Game1_InfoRepository;
 import Tour.B_Gosu.Repository.Game2_InfoRepository;
 import Tour.B_Gosu.Repository.ItemInfoRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 @RestController
@@ -27,7 +24,7 @@ public class GameController {
         this.game1InfoRepository = game1InfoRepository;
         this.game2InfoRepository = game2InfoRepository;
     }
-    @PostMapping("/info")
+    @GetMapping("/info")
     public ResponseEntity<GameInfo> gameInfo(@RequestParam("characterid") int characterid){
 
         Optional<CharacterInfo> character = characterInfoRepository.findByCharacterid(characterid); // character 테이블에서 정보 조회
