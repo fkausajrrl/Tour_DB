@@ -65,7 +65,7 @@ public class GameController {
     }
 
     @PostMapping("/save/item") //GameInfo 객체 받아서 item저장하고
-    public ResponseEntity<String> gameItemSave(@RequestParam("gameInfo") GameInfo gameInfo){
+    public ResponseEntity<String> gameItemSave(@RequestBody GameInfo gameInfo){
 
         Optional<CharacterInfo> character = characterInfoRepository.findByCharacterid(gameInfo.getCharacterid()); // character 테이블에서 정보 조회
         ItemInfo item = itemInfoRepository.findByCharacterid(gameInfo.getCharacterid()); // item 테이블에서 정보 조회

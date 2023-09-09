@@ -28,13 +28,14 @@ public class Game2_Controller {
     }
     @PostMapping("/save") //characterid, score2, money
     public ResponseEntity<String> saveGameData(@RequestParam("characterid") int characterid, @RequestParam("score") int score,
-                                               @RequestParam("money") int money){
+                                               @RequestParam("money") int money, @RequestParam("current_money") int current_money){
 
         Optional<CharacterInfo> ch_infos = characterInfoRepository.findByCharacterid(characterid);  //character table에서 characterid로 조회
         if(ch_infos.isPresent()){ //존재 한다면
             CharacterInfo ch = ch_infos.get();
             int t_money = ch.getTotal_money() + money; //db에 저장된 현재 total_money가져와서 더하기
             ch.setTotal_money(t_money);
+            ch.setCurrent_money(current_money);
         }
         Game2 gameInfo = game2InfoRepository.findByCharacterid(characterid); //game2 정보 조회
 
