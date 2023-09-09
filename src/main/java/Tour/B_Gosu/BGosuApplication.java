@@ -38,9 +38,10 @@ public class BGosuApplication {
 //				"src/main/java/Tour/json/DB데이터 확정_국문/14_data.json",
 //				"src/main/java/Tour/json/DB데이터 확정_국문/38_data.json",
 //				"src/main/java/Tour/json/DB데이터 확정_국문/39_data.json",
-				"src/main/java/Tour/json/knto0903_2.json" //우리 db
-//				"src/main/java/Tour/json/oraksil.json"
-//				"src/main/java/Tour/json/인생네컷.json"
+				"src/main/java/Tour/json/knto0909.json" //우리 db
+//				"src/main/java/Tour/json/knto_관광지_완_0908.json",
+//				"src/main/java/Tour/json/knto_문화지_완_0908.json",
+//				"src/main/java/Tour/json/knto_방탈출_완_0909.json"
 		);
 		List<KorServiceInfo> korServiceInfos = korServiceInfoController.readJsonFiles(filePaths);
 		korServiceInfoService.saveKorServiceInfoList(korServiceInfos);

@@ -53,5 +53,4 @@ public class Game2 {
 
     @Column(name = "total_money2")
     private int total_money2;
-
 }

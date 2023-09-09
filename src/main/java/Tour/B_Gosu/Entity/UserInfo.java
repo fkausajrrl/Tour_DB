@@ -1,6 +1,9 @@
 package Tour.B_Gosu.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CurrentTimestamp;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name ="myuser")
@@ -48,6 +51,18 @@ public class UserInfo {
 
     @Column(name = "end_date") //여행 종료 날짜
     private String end_date;
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    @Column(name = "time") //생성 시간
+    @CurrentTimestamp
+    private Timestamp time;
 
     public int getUserid() {
         return userid;

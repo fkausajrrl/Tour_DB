@@ -25,15 +25,16 @@ public class TagController {
     }
 
     @GetMapping("/tour")
-    public ResponseEntity<List<KorServiceInfo>> getTouristSpotsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy) {
+    public ResponseEntity<List<KorServiceInfo>> getTour_CalSpotsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy) {
         List<KorServiceInfo> touristSpots = korserviceInfoRepository.findTouristSpotsNearby(mapx, mapy);
-        return new ResponseEntity<>(touristSpots, HttpStatus.OK);
-    }
-
-    @GetMapping("/cultural")
-    public ResponseEntity<List<KorServiceInfo>> getCulturalPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy) {
         List<KorServiceInfo> culturalPlaces = korserviceInfoRepository.findCulturalPlacesNearby(mapx, mapy);
-        return new ResponseEntity<>(culturalPlaces, HttpStatus.OK);
+
+        Set<KorServiceInfo> filteredResultsSet = new LinkedHashSet<>(); //순서 정렬
+        filteredResultsSet.addAll(touristSpots);
+        filteredResultsSet.addAll(culturalPlaces);
+        List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
+
+        return new ResponseEntity<>(filteredResults, HttpStatus.OK);
     }
 
     @GetMapping("/shopping")

@@ -45,9 +45,9 @@ public class KorServiceInfoController {
                 // 각 요소들을 순회하면서 필요한 필드들을 추출하여 새로운 KorServiceInfo 객체로 변환
                 for (JsonNode item : itemArray) {
                     String title = item.get("title").asText();
-                    String title_jp = item.has("titleJp") ? item.get("titleJp").asText() : ""; //필드 값 없을시 ' ' 공백 입력
-                    String title_en = item.has("titleEn") ? item.get("titleEn").asText() : ""; //필드 값 없을시 ' ' 공백 입력
-                    String title_ch = item.has("titleCh") ? item.get("titleCh").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_jp = item.has("title_jp") ? item.get("title_jp").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_en = item.has("title_en") ? item.get("title_en").asText() : ""; //필드 값 없을시 ' ' 공백 입력
+                    String title_ch = item.has("title_ch") ? item.get("title_ch").asText() : ""; //필드 값 없을시 ' ' 공백 입력
                     String addr1 = item.get("addr1").asText();
                     String addr2 = item.get("addr2").asText();
                     String contenttypeid = item.get("contenttypeid").asText();

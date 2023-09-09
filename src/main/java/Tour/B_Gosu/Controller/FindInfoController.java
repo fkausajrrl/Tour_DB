@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/bgosu/api/challenge")
 public class FindInfoController {
@@ -63,8 +65,8 @@ public class FindInfoController {
         return ResponseEntity.ok("Ok");
     }
 
-//    @GetMapping("/check")
-//    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("UserId") int UserId) {
+//    @PostMapping("/check")
+//    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("characterid") int characterid) {
 //        //successInfoRepository에 있는 쿼리 호출하는 부분 추가
 //        Optional<FindInfo> challange_findInfo = findInfoRepository.findByUserId(UserId);
 //

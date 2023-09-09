@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AddressToJson {
     public static void main(String[] args) {
-        String inputFilePath = "src/main/java/Tour/json/knto_titles.json";
+        String inputFilePath = "src/main/java/Tour/json/knto_방탈출_완_0909.json";
         String outputFilePath = "src/main/java/Tour/json/test/sigungu_out.json";
 
         createAndSaveJson(inputFilePath, outputFilePath);

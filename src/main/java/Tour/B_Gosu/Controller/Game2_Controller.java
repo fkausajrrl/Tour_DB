@@ -30,3 +30,4 @@ public class Game2_Controller {
         return ResponseEntity.ok("데이터 저장 완료");
     }
 }
+//characterid 받아와서 character table에서 조회해서 max_score랑 current money반환하는 api 필요 (current money는 character table에서 조회해서 가져가야됨)
