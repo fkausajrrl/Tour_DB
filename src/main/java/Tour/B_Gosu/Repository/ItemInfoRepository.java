@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ItemInfoRepository extends JpaRepository<ItemInfo, String> {
+    ItemInfo findByCharacterid(int characterid);
 }

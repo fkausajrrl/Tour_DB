@@ -1,9 +1,7 @@
 package Tour.B_Gosu.Controller;
 
-import Tour.B_Gosu.Entity.CharacterInfo;
-import Tour.B_Gosu.Entity.UserInfo;
-import Tour.B_Gosu.Repository.CharacterInfoRepository;
-import Tour.B_Gosu.Repository.UserInfoRepository;
+import Tour.B_Gosu.Entity.*;
+import Tour.B_Gosu.Repository.*;
 import Tour.B_Gosu.Service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +16,18 @@ public class UserController {
     private final UserInfoService userInfoService;
     private final UserInfoRepository userInfoRepository;
     private final CharacterInfoRepository characterInfoRepository;
+    private final ItemInfoRepository itemInfoRepository;
+    private final Game1_InfoRepository game1_infoRepository;
+    private final Game2_InfoRepository game2_infoRepository;
 
     @Autowired
-    public UserController(UserInfoService userInfoService, UserInfoRepository userInfoRepository, CharacterInfoRepository characterInfoRepository) {
+    public UserController(UserInfoService userInfoService, UserInfoRepository userInfoRepository, CharacterInfoRepository characterInfoRepository, ItemInfoRepository itemInfoRepository, Game1_InfoRepository game1InfoRepository, Game2_InfoRepository game2InfoRepository) {
         this.userInfoService = userInfoService;
         this.userInfoRepository = userInfoRepository;
         this.characterInfoRepository = characterInfoRepository;
+        this.itemInfoRepository = itemInfoRepository;
+        game1_infoRepository = game1InfoRepository;
+        game2_infoRepository = game2InfoRepository;
     }
 
     @GetMapping("/find") //초기 부팅 시에 조회.
@@ -57,8 +61,24 @@ public class UserController {
                 characterInfoRepository.save(characterInfo);
 
                 Optional<CharacterInfo> re_ch_info = characterInfoRepository.findTopByUseridOrderByCharacteridDesc(userId);
+                int num = re_ch_info.get().getCharacterid();
+                ItemInfo itemInfo = new ItemInfo();
+                itemInfo.setCharacterid(num);
+                itemInfoRepository.save(itemInfo);
 
-                return ResponseEntity.ok(String.valueOf(re_ch_info.get().getCharacterid())); //다중 회차 캐릭터 생성.
+                Game1 game1 = new Game1(); //게임 1 객체 기본 정보 저장
+                game1.setCharacterid(num);
+                game1.setMax_score1(0);
+                game1.setTotal_score1(0);
+                game1_infoRepository.save(game1);
+
+                Game2 game2 = new Game2();
+                game2.setCharacterid(num);
+                game2.setMax_score2(0);
+                game2.setTotal_score2(0);
+                game2_infoRepository.save(game2);
+
+                return ResponseEntity.ok(String.valueOf(num)); //다중 회차 캐릭터 생성.
             }else{
                 return ResponseEntity.ok("C"); //character table에서 userId 조회 오류
             }
@@ -110,8 +130,24 @@ public class UserController {
             characterInfoRepository.save(characterInfo); //캐릭터 생성
 
             Optional<CharacterInfo> characterInfo1 = characterInfoRepository.findByUserid(userId); //userid로 조회
+            int num2 = characterInfo1.get().getCharacterid();
+            ItemInfo itemInfo = new ItemInfo();
+            itemInfo.setCharacterid(num2);
+            itemInfoRepository.save(itemInfo);
 
-            return ResponseEntity.ok(String.valueOf(characterInfo1.get().getCharacterid())); //프론트로 characterid 보내줌.
+            Game1 game1 = new Game1(); //게임 1 객체 기본 정보 저장
+            game1.setCharacterid(num2);
+            game1.setMax_score1(0);
+            game1.setTotal_score1(0);
+            game1_infoRepository.save(game1);
+
+            Game2 game2 = new Game2();
+            game2.setCharacterid(num2);
+            game2.setMax_score2(0);
+            game2.setTotal_score2(0);
+            game2_infoRepository.save(game2);
+
+            return ResponseEntity.ok(String.valueOf(num2)); //프론트로 characterid 보내줌.
         } else {
             // 사용자 정보가 존재하지 않을 경우에 대한 처리
             return ResponseEntity.ok("E");

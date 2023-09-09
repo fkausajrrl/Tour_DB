@@ -45,6 +45,13 @@ public class CharacterInfo {
     public void setCharacterid(int characterid) {
         this.characterid = characterid;
     }
+    public int getTotal_money() {
+        return total_money;
+    }
+
+    public void setTotal_money(int total_money) {
+        this.total_money = total_money;
+    }
 
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,6 +64,9 @@ public class CharacterInfo {
     private String character_name;
     @Column(name = "current_money")
     private int current_money;
+    @Column(name = "total_money")
+    private int total_money;
+
 
 
 }

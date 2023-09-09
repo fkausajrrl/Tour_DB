@@ -32,13 +32,6 @@ public class Game1 {
         this.total_score1 = total_score1;
     }
 
-    public int getTotal_money1() {
-        return total_money1;
-    }
-
-    public void setTotal_money1(int total_money1) {
-        this.total_money1 = total_money1;
-    }
 
     @Id //pramary key
     @Column(name = "characterid")
@@ -50,7 +43,5 @@ public class Game1 {
     @Column(name = "total_score1")
     private int total_score1;
 
-    @Column(name = "total_money1")
-    private int total_money1;
 
 }
