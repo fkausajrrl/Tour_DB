@@ -7,12 +7,15 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface FindInfoRepository extends JpaRepository<FindInfo, String> {
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM find WHERE characterid = :ch AND title = :ti", nativeQuery = true)
-    FindInfo deleteByCharacterIdAndTitle(int ch, String ti);
 
-    FindInfo findByCharacterid(int characterId);
+    @Query(value = "DELETE FROM find " +
+            "WHERE characterid = :ch AND\n +" +
+            "title = :ti", nativeQuery = true)
+    void deleteByCharacterIdAndTitle(int ch, String ti);
+
+    Optional<FindInfo> findByCharacterid(int characterId);
 }

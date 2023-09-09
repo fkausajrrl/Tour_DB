@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/bgosu/api/challenge")
@@ -66,11 +68,15 @@ public class FindInfoController {
 
     @PostMapping("/drop")
     public ResponseEntity<String> challengeDrop(@RequestParam("characterid") int characterid, @RequestParam("title") String title) {
-        FindInfo findInfos = findInfoRepository.findByCharacterid(characterid);
+        Optional<FindInfo> findInfos = findInfoRepository.findByCharacterid(characterid);
 
-        if(findInfos.getCharacterid() == characterid){
-            findInfoRepository.deleteByCharacterIdAndTitle(characterid,title);
-            return ResponseEntity.ok("G"); //find 테이블에서 삭제
+        if(findInfos.isPresent()){ //캐릭터id 있으면
+            FindInfo findInfo = findInfos.get();
+            if(findInfo.getTitle().equals(title)){
+                findInfoRepository.deleteByCharacterIdAndTitle(characterid,title);
+                return ResponseEntity.ok("J"); //find 테이블에서 삭제
+            }
+            return ResponseEntity.ok("G"); //find 테이블에는 있으나 삭제 실패.
         }
         else{
             return ResponseEntity.ok("H"); //find테이블에서 characterid를 찾지 못함.
