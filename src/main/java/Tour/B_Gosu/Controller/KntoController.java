@@ -156,7 +156,7 @@ public class KntoController {
         if (tag1.equals("3")){ //tag1 값이 3인 경우 tag1을 필터에서 제외 => tag1 값은 모두 출력됨.
             filteredResultsSet.addAll(touristSpots.stream() //모두 일치
                     .filter(info ->
-                                    info.getTag2().contains(tag2) &&
+                            info.getTag2().contains(tag2) &&
                                     info.getTag3().contains(tag3) &&
                                     info.getTag4().contains(tag4)
                     ).toList());
@@ -164,13 +164,13 @@ public class KntoController {
 
             filteredResultsSet.addAll(touristSpots.stream() //tag4 제외
                     .filter(info ->
-                                    info.getTag2().contains(tag2) &&
+                            info.getTag2().contains(tag2) &&
                                     info.getTag3().contains(tag3)
                     ).toList());
 
             filteredResultsSet.addAll(touristSpots.stream() //tag4, tag3 제외
                     .filter(info ->
-                                    info.getTag2().contains(tag2)
+                            info.getTag2().contains(tag2)
                     ).toList());
             List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 

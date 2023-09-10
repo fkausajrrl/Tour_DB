@@ -12,14 +12,14 @@ public class FindInfo {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "title_jp")
-    private String title_jp;
+    @Column(name = "auth")
+    private int auth;
 
     @Column(name = "title_en")
     private String title_en;
 
-    @Column(name = "title_ch")
-    private String title_ch;
+//    @Column(name = "title_ch")
+//    private String title_ch;
 
     @Column(name = "addr1")
     private String addr1;
@@ -90,12 +90,12 @@ public class FindInfo {
         this.title = title;
     }
 
-    public String getTitle_jp() {
-        return title_jp;
+    public int getAuth() {
+        return auth;
     }
 
-    public void setTitle_jp(String title_jp) {
-        this.title_jp = title_jp;
+    public void setAuth(int auth) {
+        this.auth = auth;
     }
 
     public String getTitle_en() {
@@ -106,13 +106,13 @@ public class FindInfo {
         this.title_en = title_en;
     }
 
-    public String getTitle_ch() {
-        return title_ch;
-    }
-
-    public void setTitle_ch(String title_ch) {
-        this.title_ch = title_ch;
-    }
+//    public String getTitle_ch() {
+//        return title_ch;
+//    }
+//
+//    public void setTitle_ch(String title_ch) {
+//        this.title_ch = title_ch;
+//    }
 
     public String getAddr1() {
         return addr1;

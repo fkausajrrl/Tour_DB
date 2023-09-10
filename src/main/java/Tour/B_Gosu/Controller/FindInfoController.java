@@ -41,9 +41,9 @@ public class FindInfoController {
         FindInfo findInfo = new FindInfo();
         findInfo.setCharacterid(characterid);
         findInfo.setTitle(firstKorServiceInfo.getTitle());
-        findInfo.setTitle_jp(firstKorServiceInfo.getTitle_jp());
+        findInfo.setAuth(firstKorServiceInfo.getAuth());
         findInfo.setTitle_en(firstKorServiceInfo.getTitle_en());
-        findInfo.setTitle_ch(firstKorServiceInfo.getTitle_ch());
+//        findInfo.setTitle_ch(firstKorServiceInfo.getTitle_ch());
         findInfo.setAddr1(firstKorServiceInfo.getAddr1());
         findInfo.setAddr2(firstKorServiceInfo.getAddr2());
         findInfo.setContenttypeid(firstKorServiceInfo.getContenttypeid());

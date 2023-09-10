@@ -15,7 +15,6 @@ import java.util.*;
 @RestController
 @RequestMapping("/bgosu/api/tag")
 public class TagController {
-
     @Autowired
     private KorServiceInfoRepository korserviceInfoRepository;
     @GetMapping("/restaurant")

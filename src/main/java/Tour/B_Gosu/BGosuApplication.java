@@ -1,7 +1,10 @@
 package Tour.B_Gosu;
 
+import Tour.B_Gosu.Controller.DailyController;
 import Tour.B_Gosu.Controller.KorServiceInfoController;
+import Tour.B_Gosu.Entity.DailyInfo;
 import Tour.B_Gosu.Entity.KorServiceInfo;
+import Tour.B_Gosu.Service.DailyInfoService;
 import Tour.B_Gosu.Service.KorServiceInfoService;
 import Tour.B_Gosu.tool.AreaBaseListApplication;
 import jakarta.annotation.PostConstruct;
@@ -15,10 +18,14 @@ import java.util.List;
 public class BGosuApplication {
 	private final KorServiceInfoController korServiceInfoController;
 	private final KorServiceInfoService korServiceInfoService;
+	private final DailyController dailyController;
+	private final DailyInfoService dailyInfoService;
 
-	public BGosuApplication(KorServiceInfoController korServiceInfoController, KorServiceInfoService korServiceInfoService) {
+	public BGosuApplication(KorServiceInfoController korServiceInfoController, KorServiceInfoService korServiceInfoService, DailyController dailyController, DailyInfoService dailyInfoService) {
 		this.korServiceInfoController = korServiceInfoController;
 		this.korServiceInfoService = korServiceInfoService;
+		this.dailyController = dailyController;
+		this.dailyInfoService = dailyInfoService;
 	}
 
 	public static void main(String[] args){
@@ -45,5 +52,10 @@ public class BGosuApplication {
 		);
 		List<KorServiceInfo> korServiceInfos = korServiceInfoController.readJsonFiles(filePaths);
 		korServiceInfoService.saveKorServiceInfoList(korServiceInfos);
+
+		String filePath = "src/main/java/Tour/json/양식.json"; //daily.json파일 경로
+		List<DailyInfo> dailyInfos = dailyController.readJsonFiles(filePaths); //json파일 처리 해서 객체 반환
+		dailyInfoService.saveDailyInfo(dailyInfos);
+
 	}
 }
