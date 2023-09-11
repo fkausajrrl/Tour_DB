@@ -43,9 +43,12 @@ public class UserController {
     }
 
     @PostMapping("/restart") //android로 user_id 조회 -> character_id 생성하기
-    public ResponseEntity<String> newCharacterFrom(@RequestParam("android") String android) {
+    public ResponseEntity<String> newCharacterFrom(@RequestParam("android") String android, @RequestParam("start_date") String start_date, @RequestParam("end_date") String end_date) {
         Optional<UserInfo> userInfos = userInfoRepository.findByAndroid(android);
         if (userInfos.isPresent()) { //android로 user정보 조회
+            userInfos.get().setStart_date(start_date);
+            userInfos.get().setEnd_date(end_date);
+            userInfoRepository.save(userInfos.get());
             int userId = userInfos.get().getUserid(); //userid 알아내기
             Optional<CharacterInfo> ch_infos = characterInfoRepository.findTopByUseridOrderByCharacteridDesc(userId);
             if(ch_infos.isPresent()){

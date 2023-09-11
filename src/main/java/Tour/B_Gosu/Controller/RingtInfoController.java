@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 @Controller
 @RequestMapping("/bgosu/api")
@@ -50,17 +50,39 @@ public class RingtInfoController {
         long hours = duration.toHours() % 24;
         long minutes = duration.toMinutes() % 60;
 
-        String date = days +" D" + hours + " H" + minutes + " M";
-        for(successInfos){
+        String date = days + " D  " + hours + " H  " + minutes + " M  ";
 
+        int size = successInfos.size();
+        StringJoiner sigunguList = new StringJoiner(", ");
+
+        for (int i = 0; i < size; i++) {
+            switch (successInfos.get(i).getSigungucode()) {
+                case "1" -> sigunguList.add("강서구");
+                case "2" -> sigunguList.add("금정구");
+                case "3" -> sigunguList.add("기장군");
+                case "4" -> sigunguList.add("남구");
+                case "5" -> sigunguList.add("동구");
+                case "6" -> sigunguList.add("동래구");
+                case "7" -> sigunguList.add("부산진구");
+                case "8" -> sigunguList.add("북구");
+                case "9" -> sigunguList.add("사상구");
+                case "10" -> sigunguList.add("사하구");
+                case "11" -> sigunguList.add("서구");
+                case "12" -> sigunguList.add("수영구");
+                case "13" -> sigunguList.add("연제구");
+                case "14" -> sigunguList.add("영도구");
+                case "15" -> sigunguList.add("중구");
+                case "16" -> sigunguList.add("해운대구");
+            }
         }
-        String area ="hello";
+
+        String area_name = sigunguList.toString();
 
         RightInfo rightInfo = new RightInfo();
         rightInfo.setCharacterid(characterid);
         rightInfo.setTimes(date); //처리 로직 짜야댐.
-        rightInfo.setSuccess_count(successInfo.getCount());
-        rightInfo.setSuccess_area(area); //success테이블에서 시군구 코드 가져와서 각 시군구 코드마다 동네 이름 맵핑해서 한 문장이나 만들어서 줄 계획.
+        rightInfo.setSuccess_count(size);
+        rightInfo.setSuccess_area(area_name); //success테이블에서 시군구 코드 가져와서 각 시군구 코드마다 동네 이름 맵핑해서 한 문장이나 만들어서 줄 계획.
         rightInfo.setTotal_score1(game1.getTotal_score1());
         rightInfo.setTotal_score2(game2.getTotal_score2());
         rightInfo.setTotal_money(characterInfo.get().getTotal_money());
