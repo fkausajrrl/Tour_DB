@@ -45,7 +45,7 @@ public class BGosuApplication {
 //				"src/main/java/Tour/json/DB데이터 확정_국문/14_data.json",
 //				"src/main/java/Tour/json/DB데이터 확정_국문/38_data.json",
 //				"src/main/java/Tour/json/DB데이터 확정_국문/39_data.json",
-				"src/main/java/Tour/json/knto0909.json" //우리 db
+				"src/main/java/Tour/json/knto0909.json" //Knto + 챌린지 관련 데이터
 //				"src/main/java/Tour/json/knto_관광지_완_0908.json",
 //				"src/main/java/Tour/json/knto_문화지_완_0908.json",
 //				"src/main/java/Tour/json/knto_방탈출_완_0909.json"
@@ -53,8 +53,11 @@ public class BGosuApplication {
 		List<KorServiceInfo> korServiceInfos = korServiceInfoController.readJsonFiles(filePaths);
 		korServiceInfoService.saveKorServiceInfoList(korServiceInfos);
 
-		String filePath = "src/main/java/Tour/json/양식.json"; //daily.json파일 경로
+		String filePath = "src/main/java/Tour/json/양식.json"; //daily.json파일 경로 -->daily_quiz 데이터
 		dailyController.saveDailyInfoFromJsonFiles(filePath); //json파일 처리 해서 객체 반환
+
+		String file_path = "";
+
 
 	}
 }
