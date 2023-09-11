@@ -1,15 +1,9 @@
 package Tour.B_Gosu.Controller;
 
-import Tour.B_Gosu.Entity.CharacterInfo;
-import Tour.B_Gosu.Entity.FindInfo;
-import Tour.B_Gosu.Entity.KorServiceInfo;
-import Tour.B_Gosu.Entity.SuccessInfo;
-import Tour.B_Gosu.Repository.CharacterInfoRepository;
-import Tour.B_Gosu.Repository.FindInfoRepository;
-import Tour.B_Gosu.Repository.KorServiceInfoRepository;
-import Tour.B_Gosu.Repository.SuccessInfoRepository;
+import Tour.B_Gosu.Entity.*;
+import Tour.B_Gosu.Repository.*;
 import Tour.B_Gosu.Service.FindInfoService;
-import Tour.B_Gosu.Service.SuccessInfoService;
+import jakarta.persistence.Column;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,16 +20,19 @@ public class FindInfoController {
     private final FindInfoService findInfoService;
     private final CharacterInfoRepository characterInfoRepository;
     private final SuccessInfoRepository successInfoRepository;
+    private final QuizInfoRepository quizInfoRepository;
+
 
     @Autowired
     public FindInfoController(KorServiceInfoRepository korserviceInfoRepository, FindInfoRepository findInfoRepository,
                               FindInfoService findInfoService, CharacterInfoRepository characterInfoRepository,
-                              SuccessInfoRepository successInfoRepository) {
+                              SuccessInfoRepository successInfoRepository, QuizInfoRepository quizInfoRepository) {
         this.korserviceInfoRepository = korserviceInfoRepository;
         this.findInfoRepository = findInfoRepository;
         this.findInfoService = findInfoService;
         this.characterInfoRepository = characterInfoRepository;
         this.successInfoRepository = successInfoRepository;
+        this.quizInfoRepository = quizInfoRepository;
     }
 
 
@@ -86,31 +83,14 @@ public class FindInfoController {
         }
 
     }
-//챌린지 성공 -> 돈 current_money랑 total_money에 추가해서 주기
 
-    //    @PostMapping("/check")
-//    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("characterid") int characterid) {
-//        //successInfoRepository에 있는 쿼리 호출하는 부분 추가
-//        Optional<FindInfo> challange_findInfo = findInfoRepository.findByUserId(UserId);
-//
-//
-//        if (challange_findInfo.isPresent()) {
-//            // 해당 answer_id가 DB에 존재하는 경우 1을 반환
-//
-//            SuccessInfo s_info = new SuccessInfo();
-//
-//            s_info.setTitle(challange_findInfo.get().getTitle());
-//            s_info.setCharacterid(character_id);
-//
-//            successInfoService.save(s_info);
-//
-//            return ResponseEntity.ok(1);
-//        } else {
-//            // 해당 answer_id에 대한 데이터가 없을 경우 0을 반환
-//            return ResponseEntity.ok(0);
-//        }
-//    }
-    @PostMapping("/success")
+    @PostMapping("/check")
+    public ResponseEntity<QuizInfo> ChallengeCheak(@RequestParam("title") String title){
+        QuizInfo quizInfo = quizInfoRepository.findByTitle(title);
+        return ResponseEntity.ok(quizInfo);
+    }
+
+    @PostMapping("/success") //(0)위도, 경도 확인  / (1)
     public ResponseEntity<String> ChallengeSuccess(@RequestParam("characterid") int characterid, @RequestParam("title") String title) {
         FindInfo findInfo = findInfoRepository.findByCharacterid(characterid);
 

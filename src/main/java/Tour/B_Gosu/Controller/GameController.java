@@ -1,10 +1,7 @@
 package Tour.B_Gosu.Controller;
 
 import Tour.B_Gosu.Entity.*;
-import Tour.B_Gosu.Repository.CharacterInfoRepository;
-import Tour.B_Gosu.Repository.Game1_InfoRepository;
-import Tour.B_Gosu.Repository.Game2_InfoRepository;
-import Tour.B_Gosu.Repository.ItemInfoRepository;
+import Tour.B_Gosu.Repository.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +13,15 @@ public class GameController {
     private final ItemInfoRepository itemInfoRepository;
     private final Game1_InfoRepository game1InfoRepository;
     private final Game2_InfoRepository game2InfoRepository;
+    private final UserInfoRepository userInfoRepository;
 
 
-    public GameController(CharacterInfoRepository characterInfoRepository, ItemInfoRepository itemInfoRepository, Game1_InfoRepository game1InfoRepository, Game2_InfoRepository game2InfoRepository) {
+    public GameController(CharacterInfoRepository characterInfoRepository, ItemInfoRepository itemInfoRepository, Game1_InfoRepository game1InfoRepository, Game2_InfoRepository game2InfoRepository, UserInfoRepository userInfoRepository) {
         this.characterInfoRepository = characterInfoRepository;
         this.itemInfoRepository = itemInfoRepository;
         this.game1InfoRepository = game1InfoRepository;
         this.game2InfoRepository = game2InfoRepository;
+        this.userInfoRepository = userInfoRepository;
     }
     @GetMapping("/info")
     public ResponseEntity<GameInfo> gameInfo(@RequestParam("characterid") int characterid){
@@ -31,10 +30,12 @@ public class GameController {
         ItemInfo item = itemInfoRepository.findByCharacterid(characterid); // item 테이블에서 정보 조회
         Game1 game1 = game1InfoRepository.findByCharacterid(characterid); // game1 테이블에서 정보 조회
         Game2 game2 = game2InfoRepository.findByCharacterid(characterid); // game2 테이블에서 정보 조회
+        Optional<UserInfo> userInfo = userInfoRepository.findByUserid(character.get().getUserid()); //character 테이블에서 userid 가져와서 검색
 
         GameInfo gameinfo = new GameInfo();
         gameinfo.setCharacterid(characterid);
         gameinfo.setType(character.get().getType());
+        gameinfo.setEnd_date(userInfo.get().getEnd_date());
         gameinfo.setCharacter_name(character.get().getCharacter_name());
         gameinfo.setCurrent_money(character.get().getCurrent_money());
         gameinfo.setHead_fir(item.getHead_fir());

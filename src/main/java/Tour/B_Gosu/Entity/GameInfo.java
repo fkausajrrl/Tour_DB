@@ -22,8 +22,8 @@ public class GameInfo {
     private int hand_fir;
     @Column(name = "hand_sec") //핸드백
     private int hand_sec;
-    @Column(name = "total_money")
-    private int total_money;
+    @Column(name = "end_date") //여행 종료 날짜
+    private String end_date;
     @Column(name = "max_score1")
     private int max_score1;
     @Column(name = "max_score2")
@@ -99,12 +99,12 @@ public class GameInfo {
         this.hand_sec = hand_sec;
     }
 
-    public int getTotal_money() {
-        return total_money;
+    public String getEnd_date() {
+        return end_date;
     }
 
-    public void setTotal_money(int total_money) {
-        this.total_money = total_money;
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 
     public int getMax_score1() {
