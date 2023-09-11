@@ -6,6 +6,9 @@ import Tour.B_Gosu.Service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
 import java.util.Optional;
@@ -48,6 +51,7 @@ public class UserController {
         if (userInfos.isPresent()) { //android로 user정보 조회
             userInfos.get().setStart_date(start_date);
             userInfos.get().setEnd_date(end_date);
+            userInfos.get().setTime(Timestamp.from(Instant.now()));
             userInfoRepository.save(userInfos.get());
             int userId = userInfos.get().getUserid(); //userid 알아내기
             Optional<CharacterInfo> ch_infos = characterInfoRepository.findTopByUseridOrderByCharacteridDesc(userId);
