@@ -1,19 +1,19 @@
 package Tour.B_Gosu.Controller;
 
+import Tour.B_Gosu.Entity.CharacterInfo;
 import Tour.B_Gosu.Entity.FindInfo;
 import Tour.B_Gosu.Entity.KorServiceInfo;
 import Tour.B_Gosu.Entity.SuccessInfo;
+import Tour.B_Gosu.Repository.CharacterInfoRepository;
 import Tour.B_Gosu.Repository.FindInfoRepository;
 import Tour.B_Gosu.Repository.KorServiceInfoRepository;
 import Tour.B_Gosu.Repository.SuccessInfoRepository;
 import Tour.B_Gosu.Service.FindInfoService;
 import Tour.B_Gosu.Service.SuccessInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -24,18 +24,20 @@ public class FindInfoController {
     private final KorServiceInfoRepository korserviceInfoRepository;
     private final FindInfoRepository findInfoRepository;
     private final FindInfoService findInfoService;
-    private final SuccessInfoService successInfoService;
+    private final CharacterInfoRepository characterInfoRepository;
     private final SuccessInfoRepository successInfoRepository;
 
     @Autowired
-    public FindInfoController(KorServiceInfoRepository korserviceInfoRepository, FindInfoService findInfoService,
-                              FindInfoRepository findInfoRepository, SuccessInfoService successInfoService, SuccessInfoRepository successInfoRepository) {
+    public FindInfoController(KorServiceInfoRepository korserviceInfoRepository, FindInfoRepository findInfoRepository,
+                              FindInfoService findInfoService, CharacterInfoRepository characterInfoRepository,
+                              SuccessInfoRepository successInfoRepository) {
         this.korserviceInfoRepository = korserviceInfoRepository;
-        this.findInfoService = findInfoService;
         this.findInfoRepository = findInfoRepository;
-        this.successInfoService = successInfoService;
+        this.findInfoService = findInfoService;
+        this.characterInfoRepository = characterInfoRepository;
         this.successInfoRepository = successInfoRepository;
     }
+
 
     @PostMapping("/accept")
     public ResponseEntity<String> challengeAccept(@RequestParam("characterid") int characterid, @RequestParam("title") String title) {
@@ -73,21 +75,20 @@ public class FindInfoController {
     public ResponseEntity<String> challengeDrop(@RequestParam("characterid") int characterid, @RequestParam("title") String title) {
         FindInfo findInfos = findInfoRepository.findByCharacterid(characterid);
 
-        if(findInfos.getCharacterid() == characterid){ //캐릭터id 있으면
-            if(findInfos.getTitle().equals(title)){
-                findInfoRepository.deleteByCharacterIdAndTitle(characterid,title);
+        if (findInfos.getCharacterid() == characterid) { //캐릭터id 있으면
+            if (findInfos.getTitle().equals(title)) {
+                findInfoRepository.deleteByCharacterIdAndTitle(characterid, title);
                 return ResponseEntity.ok("J"); //find 테이블에서 삭제
             }
             return ResponseEntity.ok("G"); //find 테이블에는 있으나 삭제 실패.
-        }
-        else{
+        } else {
             return ResponseEntity.ok("H"); //find테이블에서 characterid를 찾지 못함.
         }
 
     }
 //챌린지 성공 -> 돈 current_money랑 total_money에 추가해서 주기
 
-//    @PostMapping("/check")
+    //    @PostMapping("/check")
 //    public ResponseEntity<Integer> getChallengeCheck(@RequestParam("characterid") int characterid) {
 //        //successInfoRepository에 있는 쿼리 호출하는 부분 추가
 //        Optional<FindInfo> challange_findInfo = findInfoRepository.findByUserId(UserId);
@@ -120,14 +121,20 @@ public class FindInfoController {
         successInfoRepository.save(successInfo);
 
         //성공하면 find 테이블 비우기
-        if(findInfo.getCharacterid() == characterid){ //캐릭터id 있으면
-            if(findInfo.getTitle().equals(title)){
-                findInfoRepository.deleteByCharacterIdAndTitle(characterid,title);
+        if (findInfo.getCharacterid() == characterid) { //캐릭터id 있으면
+            if (findInfo.getTitle().equals(title)) {
+                findInfoRepository.deleteByCharacterIdAndTitle(characterid, title);
+                Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
+                CharacterInfo characterInfo1 = characterInfo.get();
+                characterInfo1.setTotal_money(characterInfo1.getTotal_money() + 30);
+                characterInfo1.setCurrent_money(characterInfo1.getCurrent_money() + 30);
+
+                characterInfoRepository.save(characterInfo1);
+
                 return ResponseEntity.ok("J"); //find 테이블에서 삭제
             }
             return ResponseEntity.ok("G"); //find 테이블에는 있으나 삭제 실패.
-        }
-        else{
+        } else {
             return ResponseEntity.ok("H"); //find테이블에서 characterid를 찾지 못함.
         }
     }

@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.List;
-import java.util.Optional;
-import java.util.StringJoiner;
+import java.util.*;
 
 @Controller
 @RequestMapping("/bgosu/api")
@@ -53,30 +51,32 @@ public class RingtInfoController {
         String date = days + " D  " + hours + " H  " + minutes + " M  ";
 
         int size = successInfos.size();
-        StringJoiner sigunguList = new StringJoiner(", ");
+        Set<String> uniqueSigunguSet = new HashSet<>();
 
         for (int i = 0; i < size; i++) {
             switch (successInfos.get(i).getSigungucode()) {
-                case "1" -> sigunguList.add("강서구");
-                case "2" -> sigunguList.add("금정구");
-                case "3" -> sigunguList.add("기장군");
-                case "4" -> sigunguList.add("남구");
-                case "5" -> sigunguList.add("동구");
-                case "6" -> sigunguList.add("동래구");
-                case "7" -> sigunguList.add("부산진구");
-                case "8" -> sigunguList.add("북구");
-                case "9" -> sigunguList.add("사상구");
-                case "10" -> sigunguList.add("사하구");
-                case "11" -> sigunguList.add("서구");
-                case "12" -> sigunguList.add("수영구");
-                case "13" -> sigunguList.add("연제구");
-                case "14" -> sigunguList.add("영도구");
-                case "15" -> sigunguList.add("중구");
-                case "16" -> sigunguList.add("해운대구");
+                case "1" -> uniqueSigunguSet.add("강서구");
+                case "2" -> uniqueSigunguSet.add("금정구");
+                case "3" -> uniqueSigunguSet.add("기장군");
+                case "4" -> uniqueSigunguSet.add("남구");
+                case "5" -> uniqueSigunguSet.add("동구");
+                case "6" -> uniqueSigunguSet.add("동래구");
+                case "7" -> uniqueSigunguSet.add("부산진구");
+                case "8" -> uniqueSigunguSet.add("북구");
+                case "9" -> uniqueSigunguSet.add("사상구");
+                case "10" -> uniqueSigunguSet.add("사하구");
+                case "11" -> uniqueSigunguSet.add("서구");
+                case "12" -> uniqueSigunguSet.add("수영구");
+                case "13" -> uniqueSigunguSet.add("연제구");
+                case "14" -> uniqueSigunguSet.add("영도구");
+                case "15" -> uniqueSigunguSet.add("중구");
+                case "16" -> uniqueSigunguSet.add("해운대구");
             }
         }
+        StringJoiner sigunguList = new StringJoiner(", ");
+        uniqueSigunguSet.forEach(sigunguList::add);
 
-        String area_name = sigunguList.toString();
+        String area_name = uniqueSigunguSet.toString();
 
         RightInfo rightInfo = new RightInfo();
         rightInfo.setCharacterid(characterid);

@@ -63,14 +63,6 @@ public class CharacterInfo {
     public void setTime(Timestamp time) {
         this.time = time;
     }
-    public int getSuccess_count() {
-        return success_count;
-    }
-
-    public void setSuccess_count(int success_count) {
-        this.success_count = success_count;
-    }
-
 
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,7 +80,4 @@ public class CharacterInfo {
     @Column(name = "time") //생성 시간
     @CurrentTimestamp
     private Timestamp time;
-
-    @Column(name = "success_count")
-    private int success_count;
 }
