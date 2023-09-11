@@ -3,7 +3,7 @@ package Tour.B_Gosu.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "DailyController")
+@Table(name = "daily")
 public class DailyInfo {
     public int getCount() {
         return count;

@@ -54,8 +54,7 @@ public class BGosuApplication {
 		korServiceInfoService.saveKorServiceInfoList(korServiceInfos);
 
 		String filePath = "src/main/java/Tour/json/양식.json"; //daily.json파일 경로
-		List<DailyInfo> dailyInfos = dailyController.readJsonFiles(filePaths); //json파일 처리 해서 객체 반환
-		dailyInfoService.saveDailyInfo(dailyInfos);
+		dailyController.saveDailyInfoFromJsonFiles(filePath); //json파일 처리 해서 객체 반환
 
 	}
 }
