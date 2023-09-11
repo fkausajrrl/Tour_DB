@@ -1,6 +1,9 @@
 package Tour.B_Gosu.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CurrentTimestamp;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "characters")
@@ -53,6 +56,22 @@ public class CharacterInfo {
         this.total_money = total_money;
     }
 
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+    public int getSuccess_count() {
+        return success_count;
+    }
+
+    public void setSuccess_count(int success_count) {
+        this.success_count = success_count;
+    }
+
+
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int characterid;
@@ -66,7 +85,10 @@ public class CharacterInfo {
     private int current_money;
     @Column(name = "total_money")
     private int total_money;
+    @Column(name = "time") //생성 시간
+    @CurrentTimestamp
+    private Timestamp time;
 
-
-
+    @Column(name = "success_count")
+    private int success_count;
 }

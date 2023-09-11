@@ -34,7 +34,7 @@ public class UserController {
     public ResponseEntity<String> findUserId(@RequestParam("android") String android) {
         Optional<UserInfo> userInfos = userInfoRepository.findByAndroid(android);
         if (userInfos.isPresent()) {
-            // 해당 android DB에 존재하는 경우 1을 반환 -> 우리 게임을 한 적이 있다.
+            //            // 해당 android DB에 존재하는 경우 1을 반환 -> 우리 게임을 한 적이 있다.
             return ResponseEntity.ok("A");
         } else {
             // 해당 android 대한 데이터가 없을 경우 0을 반환 -> 우리 게임 처음이다.

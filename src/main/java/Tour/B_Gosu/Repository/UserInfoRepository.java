@@ -16,4 +16,5 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
     Optional<UserInfo> findByUserid(int userid);
 
     Optional<UserInfo> findByAndroid(String android);
+
 }

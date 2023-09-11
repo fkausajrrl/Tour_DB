@@ -2,15 +2,18 @@ package Tour.B_Gosu.Controller;
 
 import Tour.B_Gosu.Entity.FindInfo;
 import Tour.B_Gosu.Entity.KorServiceInfo;
+import Tour.B_Gosu.Entity.SuccessInfo;
 import Tour.B_Gosu.Repository.FindInfoRepository;
 import Tour.B_Gosu.Repository.KorServiceInfoRepository;
 import Tour.B_Gosu.Repository.SuccessInfoRepository;
 import Tour.B_Gosu.Service.FindInfoService;
 import Tour.B_Gosu.Service.SuccessInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -68,11 +71,10 @@ public class FindInfoController {
 
     @PostMapping("/drop")
     public ResponseEntity<String> challengeDrop(@RequestParam("characterid") int characterid, @RequestParam("title") String title) {
-        Optional<FindInfo> findInfos = findInfoRepository.findByCharacterid(characterid);
+        FindInfo findInfos = findInfoRepository.findByCharacterid(characterid);
 
-        if(findInfos.isPresent()){ //캐릭터id 있으면
-            FindInfo findInfo = findInfos.get();
-            if(findInfo.getTitle().equals(title)){
+        if(findInfos.getCharacterid() == characterid){ //캐릭터id 있으면
+            if(findInfos.getTitle().equals(title)){
                 findInfoRepository.deleteByCharacterIdAndTitle(characterid,title);
                 return ResponseEntity.ok("J"); //find 테이블에서 삭제
             }
@@ -107,9 +109,26 @@ public class FindInfoController {
 //            return ResponseEntity.ok(0);
 //        }
 //    }
-//    @PostMapping("/success")
-//    public ResponseEntity<List<KorServiceInfo>> getChallengeSuccess(@RequestParam("title") String title) {
-//        List<KorServiceInfo> success = korserviceInfoRepository.findByTitle(title);
-//        return new ResponseEntity<>(success, HttpStatus.OK);
-//    }
+    @PostMapping("/success")
+    public ResponseEntity<String> ChallengeSuccess(@RequestParam("characterid") int characterid, @RequestParam("title") String title) {
+        FindInfo findInfo = findInfoRepository.findByCharacterid(characterid);
+
+        SuccessInfo successInfo = new SuccessInfo();
+        successInfo.setTitle(title);
+        successInfo.setCharacterid(characterid);
+        successInfo.setSigungucode(findInfo.getSigungucode());
+        successInfoRepository.save(successInfo);
+
+        //성공하면 find 테이블 비우기
+        if(findInfo.getCharacterid() == characterid){ //캐릭터id 있으면
+            if(findInfo.getTitle().equals(title)){
+                findInfoRepository.deleteByCharacterIdAndTitle(characterid,title);
+                return ResponseEntity.ok("J"); //find 테이블에서 삭제
+            }
+            return ResponseEntity.ok("G"); //find 테이블에는 있으나 삭제 실패.
+        }
+        else{
+            return ResponseEntity.ok("H"); //find테이블에서 characterid를 찾지 못함.
+        }
+    }
 }

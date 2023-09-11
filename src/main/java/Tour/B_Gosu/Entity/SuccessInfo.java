@@ -33,11 +33,23 @@ public class SuccessInfo {
     @Id //pramary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int count;
+
     @Column(name = "characterid")
     private int characterid;
 
     @Column(name = "title")
     private String title;
+
+    public String getSigungucode() {
+        return sigungucode;
+    }
+
+    public void setSigungucode(String sigungucode) {
+        this.sigungucode = sigungucode;
+    }
+
+    @Column(name = "sigungucode")
+    private String sigungucode;
 
 
 }

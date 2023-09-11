@@ -14,4 +14,6 @@ public interface SuccessInfoRepository extends JpaRepository<SuccessInfo, String
             "      6371 * 2 * ASIN(SQRT(POWER(SIN((RADIANS(?1) - RADIANS(mapx)) / 2), 2) +\n" +
             "      COS(RADIANS(mapx)) * COS(RADIANS(?1)) * POWER(SIN((RADIANS(?2) - RADIANS(mapy)) / 2), 2))) * 1000 <= 5;", nativeQuery = true)
     List<KorServiceInfo> findEnjoyPlacesNearby(double mapX, double mapY, String tag1);
+
+    List<SuccessInfo> findByCharacterid(int characterid);
 }
