@@ -18,13 +18,11 @@ import java.util.List;
 public class BGosuApplication {
 	private final KorServiceInfoController korServiceInfoController;
 	private final KorServiceInfoService korServiceInfoService;
-	private final DailyController dailyController;
 	private final DailyInfoService dailyInfoService;
 
-	public BGosuApplication(KorServiceInfoController korServiceInfoController, KorServiceInfoService korServiceInfoService, DailyController dailyController, DailyInfoService dailyInfoService) {
+	public BGosuApplication(KorServiceInfoController korServiceInfoController, KorServiceInfoService korServiceInfoService, DailyInfoService dailyInfoService) {
 		this.korServiceInfoController = korServiceInfoController;
 		this.korServiceInfoService = korServiceInfoService;
-		this.dailyController = dailyController;
 		this.dailyInfoService = dailyInfoService;
 	}
 
@@ -54,7 +52,7 @@ public class BGosuApplication {
 		korServiceInfoService.saveKorServiceInfoList(korServiceInfos);
 
 		String filePath = "src/main/java/Tour/json/양식.json"; //daily.json파일 경로 -->daily_quiz 데이터
-		dailyController.saveDailyInfoFromJsonFiles(filePath); //json파일 처리 해서 객체 반환
+		dailyInfoService.saveDailyInfoFromJsonFiles(filePath); //json파일 처리 해서 객체 반환
 
 		String file_path = "";
 
