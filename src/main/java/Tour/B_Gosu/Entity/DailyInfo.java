@@ -20,11 +20,6 @@ public class DailyInfo {
     public void setDaily_quiz(String daily_quiz) {
         this.daily_quiz = daily_quiz;
     }
-
-    @Id //pramary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
-    private int count; //index
-
     public String getTitle() {
         return title;
     }
@@ -32,6 +27,10 @@ public class DailyInfo {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Id //pramary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
+    private int count; //index
 
     @Column(name = "title") //아시나요~!를 저장
     private String title;

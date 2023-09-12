@@ -28,12 +28,9 @@ public class DailyController {
 
     //
     @GetMapping("/tour") // tour, cultural /그거 아시나요~?~?~
-    public ResponseEntity<String> getCultualDaily() {
+    public ResponseEntity<DailyInfo> getCultualDaily() {
         int type = ThreadLocalRandom.current().nextInt(1, 117); // 1 이상 9 미만
         DailyInfo dailyInfo = dailyInfoRepository.findByCount(type);
-        String title = dailyInfo.getTitle();
-        String detail = dailyInfo.getDaily_quiz();
-        String total = title + ":" + detail;
-        return new ResponseEntity<>(total, HttpStatus.OK);
+        return new ResponseEntity<>(dailyInfo, HttpStatus.OK);
     }
 }
