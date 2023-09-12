@@ -25,6 +25,17 @@ public class DailyInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     private int count; //index
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Column(name = "title") //아시나요~!를 저장
+    private String title;
+
     @Column(name = "daily_quiz") //아시나요~!를 저장
     private String daily_quiz;
 }
