@@ -50,10 +50,10 @@ public class BGosuApplication {
         List<KorServiceInfo> korServiceInfos = korServiceInfoController.readJsonFiles(filePaths);
         korServiceInfoService.saveKorServiceInfoList(korServiceInfos); //knto + 챌린지 내용 저장
 
-        String filePath = "src/main/java/Tour/json/Use/daily_quiz.json"; //daily.json파일 경로 -->daily_quiz 데이터
+        String filePath = "src/main/java/Tour/json/Use/daily.json"; //daily.json파일 경로 -->daily_quiz 데이터
         dailyInfoService.saveDailyInfoFromJsonFiles(filePath); //daily_quiz 데이터 저장
 
-        String file_path = "src/main/java/Tour/json/Use/check_quiz.json";//챌린지 인증용 퀴즈 데이터
+        String file_path = "src/main/java/Tour/json/Use/quiz.json";//챌린지 인증용 퀴즈 데이터
         quizInfoService.saveQuizData(file_path); //quiz 데이터 저장
     }
 }

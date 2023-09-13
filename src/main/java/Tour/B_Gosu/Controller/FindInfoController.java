@@ -84,8 +84,8 @@ public class FindInfoController {
 
     }
 
-    @PostMapping("/check")
-    public ResponseEntity<QuizInfo> ChallengeCheak(@RequestParam("title") String title){
+    @PostMapping("/check") //auth 값이 2이면 해당 api 호출
+    public ResponseEntity<QuizInfo> ChallengeCheck(@RequestParam("title") String title){
         QuizInfo quizInfo = quizInfoRepository.findByTitle(title);
         return ResponseEntity.ok(quizInfo);
     }
