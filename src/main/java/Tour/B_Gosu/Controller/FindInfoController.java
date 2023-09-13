@@ -84,6 +84,12 @@ public class FindInfoController {
 
     }
 
+    @PostMapping("/reference")
+    public ResponseEntity<FindInfo> challengeFind(@RequestParam("characterid") int characterid){
+        FindInfo findInfo = findInfoRepository.findByCharacterid(characterid);
+        return ResponseEntity.ok(findInfo);
+    }
+
     @PostMapping("/check") //auth 값이 2이면 해당 api 호출
     public ResponseEntity<QuizInfo> ChallengeCheck(@RequestParam("title") String title){
         QuizInfo quizInfo = quizInfoRepository.findByTitle(title);
