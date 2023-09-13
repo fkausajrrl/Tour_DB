@@ -44,7 +44,7 @@ public class BGosuApplication {
 //				"src/main/java/Tour/json/DB데이터 확정_국문/14_data.json",
 //				"src/main/java/Tour/json/DB데이터 확정_국문/38_data.json",
 //				"src/main/java/Tour/json/DB데이터 확정_국문/39_data.json",
-                "src/main/java/Tour/json/Use/knto진짜진짜진짜진짜_최종.json"//Knto + 챌린지 관련 데이터
+                "src/main/java/Tour/json/Use/knto_0913_최종.json"//Knto + 챌린지 관련 데이터
 
         );
         List<KorServiceInfo> korServiceInfos = korServiceInfoController.readJsonFiles(filePaths);
