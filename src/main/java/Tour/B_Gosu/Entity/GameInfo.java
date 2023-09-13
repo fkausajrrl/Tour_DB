@@ -34,6 +34,8 @@ public class GameInfo {
     private String character_name;
     @Column(name = "current_money")
     private int current_money;
+    @Column(name = "user_name")
+    private String user_name;
 
     public int getCharacterid() {
         return characterid;
@@ -144,5 +146,13 @@ public class GameInfo {
 
     public void setCurrent_money(int current_money) {
         this.current_money = current_money;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 }

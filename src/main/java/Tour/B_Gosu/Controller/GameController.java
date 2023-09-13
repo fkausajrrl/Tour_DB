@@ -47,6 +47,7 @@ public class GameController {
         gameinfo.setHand_sec(item.getHand_sec());
         gameinfo.setMax_score1(game1.getMax_score1());
         gameinfo.setMax_score2(game2.getMax_score2());
+        gameinfo.setUser_name(userInfo.get().getUser_name());
 
         return ResponseEntity.ok(gameinfo);
     }
