@@ -89,15 +89,14 @@ public class FindInfoController {
         return ResponseEntity.ok(findInfo);
     }
 
-    //    @PostMapping("/check")
-//    public ResponseEntity<QuizInfo> ChallengeCheck(@RequestParam("title") String title){
-//        QuizInfo quizInfo = quizInfoRepository.findByTitle(title);
-//        return ResponseEntity.ok(quizInfo);
-//    }
-
+    @PostMapping("/quiz")
+    public ResponseEntity<QuizInfo> ChallengeCheck(@RequestParam("title") String title) {
+        QuizInfo quizInfo = quizInfoRepository.findByTitle(title);
+        return ResponseEntity.ok(quizInfo);
+    }
 
     @PostMapping("/success")
-    public ResponseEntity<?> ChallengeSuccess(@RequestParam("characterid") int characterid, @RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy) {
+    public ResponseEntity<String> ChallengeSuccess(@RequestParam("characterid") int characterid, @RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy) {
         FindInfo findInfo = findInfoRepository.findByCharacterid(characterid); //find 테이블에서 가져오기. //mapx, mapy
         double map_x = Double.parseDouble(findInfo.getMapx());
         double map_y = Double.parseDouble(findInfo.getMapy());
@@ -151,9 +150,7 @@ public class FindInfoController {
                     characterInfoRepository.save(characterInfo5);
 
                     findInfoRepository.deleteByCharacterIdAndTitle(characterid, findInfo.getTitle()); //find테이블에서 지우기
-
-                    QuizInfo quizInfo = quizInfoRepository.findByTitle(title_1);
-                    return ResponseEntity.ok(quizInfo);//quiz 반환
+                    return ResponseEntity.ok("2");//auth = 2 반환
                 }
             }
         } else { //실패
