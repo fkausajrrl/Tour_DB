@@ -27,17 +27,17 @@ public class KntoController {
     @Autowired
     private CharacterInfoRepository characterInfoRepository;
 
-//character_id 받아와서 character테이블에서 user_id조회 -> User table에서 user_id로 조회해서 가져오기
+    //character_id 받아와서 character테이블에서 user_id조회 -> User table에서 user_id로 조회해서 가져오기
     @GetMapping("/restaurant") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getRestaurantsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1, @RequestParam("tag2") String tag2,
                                                                      @RequestParam("characterid") int characterid) {
         int userid;
         Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
-        if(characterInfo.isPresent()){
+        if (characterInfo.isPresent()) {
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
         String tag3, tag4, tag5;
@@ -55,7 +55,7 @@ public class KntoController {
         List<KorServiceInfo> restaurants = korserviceInfoRepository.findRestaurantsNearby(mapx, mapy); // 레포지토리에서 가져오는 로직
         // 필터링 로직
         Set<KorServiceInfo> filteredResultsSet = new LinkedHashSet<>(); //순서 정렬
-        if(tag5.equals("3")){
+        if (tag5.equals("3")) {
             filteredResultsSet.addAll(restaurants.stream() //tag5 제외 => tag5 값은 상관 없음(3)을 받았으니
                     .filter(info ->
                             info.getTag1().contains(tag1) &&
@@ -124,15 +124,16 @@ public class KntoController {
 
         return new ResponseEntity<>(filteredResults, HttpStatus.OK);
     }
+
     @GetMapping("/tour") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getTouristSpotsNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                       @RequestParam("characterid") int characterid) {
         int userid;
         Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
-        if(characterInfo.isPresent()){
+        if (characterInfo.isPresent()) {
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
         String tag1, tag2, tag3, tag4;
@@ -152,8 +153,8 @@ public class KntoController {
         List<KorServiceInfo> touristSpots = korserviceInfoRepository.findTouristSpotsNearby(mapx, mapy);
 
         Set<KorServiceInfo> filteredResultsSet = new LinkedHashSet<>(); //순서 정렬
-
-        if (tag1.equals("3")){ //tag1 값이 3인 경우 tag1을 필터에서 제외 => tag1 값은 모두 출력됨.
+        //tag1 값이 3인 경우 tag1을 필터에서 제외 => tag1 값은 모두 출력됨.
+        if (tag1.equals("3")) {
             filteredResultsSet.addAll(touristSpots.stream() //모두 일치
                     .filter(info ->
                             info.getTag2().contains(tag2) &&
@@ -212,15 +213,16 @@ public class KntoController {
 
         return new ResponseEntity<>(filteredResults, HttpStatus.OK);
     }
+
     @GetMapping("/cultural") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getCulturalPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                         @RequestParam("characterid") int characterid) {
         int userid;
         Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
-        if(characterInfo.isPresent()){
+        if (characterInfo.isPresent()) {
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
 
@@ -241,6 +243,30 @@ public class KntoController {
         List<KorServiceInfo> culturalPlaces = korserviceInfoRepository.findCulturalPlacesNearby(mapx, mapy);
 
         Set<KorServiceInfo> filteredResultsSet = new LinkedHashSet<>(); //순서 정렬
+        //tag1 값이 3인 경우 tag1을 필터에서 제외 => tag1 값은 모두 출력됨.
+        if (tag1.equals("3")) {
+            filteredResultsSet.addAll(culturalPlaces.stream() //모두 일치
+                    .filter(info ->
+                            info.getTag2().contains(tag2) &&
+                                    info.getTag3().contains(tag3) &&
+                                    info.getTag4().contains(tag4)
+                    ).toList());
+
+
+            filteredResultsSet.addAll(culturalPlaces.stream() //tag4 제외
+                    .filter(info ->
+                            info.getTag2().contains(tag2) &&
+                                    info.getTag3().contains(tag3)
+                    ).toList());
+
+            filteredResultsSet.addAll(culturalPlaces.stream() //tag4, tag3 제외
+                    .filter(info ->
+                            info.getTag2().contains(tag2)
+                    ).toList());
+            List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
+
+            return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+        }
 
         filteredResultsSet.addAll(culturalPlaces.stream() //모두 일치
                 .filter(info ->
@@ -279,15 +305,16 @@ public class KntoController {
         List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
         return new ResponseEntity<>(filteredResults, HttpStatus.OK);
     }
+
     @GetMapping("/shopping") //구현 완료
     public ResponseEntity<List<KorServiceInfo>> getShoppingPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                         @RequestParam("characterid") int characterid) {
         int userid;
         Optional<CharacterInfo> characterInfo = characterInfoRepository.findByCharacterid(characterid);
-        if(characterInfo.isPresent()){
+        if (characterInfo.isPresent()) {
             CharacterInfo ch = characterInfo.get();
             userid = ch.getUserid();
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
 
@@ -333,7 +360,7 @@ public class KntoController {
         List<KorServiceInfo> shoppingPlaces = korserviceInfoRepository.findShoppingPlacesNearby(mapx, mapy);
 
         Set<KorServiceInfo> filteredResultsSet = new LinkedHashSet<>(); //순서 정렬
-        for(int i = 0; i < mapping_count; i++){
+        for (int i = 0; i < mapping_count; i++) {
             String tag_a = tag_s[i];
             filteredResultsSet.addAll(shoppingPlaces.stream() //모두 일치
                     .filter(info ->
@@ -346,8 +373,9 @@ public class KntoController {
 
         return new ResponseEntity<>(filteredResults, HttpStatus.OK);
     }
+
     @GetMapping("/enjoy") //구현 완료   tag1만 분류해서 주는게 맞는가? tag1값 다음에 tag2값 같이 해서 정렬 된 상태로 줘야하는 거 아닌가 -> 지우안테 물어보깅.
-                            // => 챌린지 말고 태그로만 사용해서 지도에 표시
+    // => 챌린지 말고 태그로만 사용해서 지도에 표시
     public ResponseEntity<List<KorServiceInfo>> getenjoyPlacesNearby(@RequestParam("mapx") double mapx, @RequestParam("mapy") double mapy,
                                                                      @RequestParam("tag1") String tag1) {
 
