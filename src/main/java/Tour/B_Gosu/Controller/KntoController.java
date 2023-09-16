@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
-
+//필터 고장 난줄 알았으나 데이터가 부족한거였음.
 @RestController
 @RequestMapping("/bgosu/api/knto")
 public class KntoController {
