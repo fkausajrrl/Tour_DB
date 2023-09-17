@@ -71,13 +71,14 @@ public class RightInfo {
         this.type = type;
     }
 
-    public String getTime() {
-        return time;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
+
 
     public String getCharacter_name() {
         return character_name;
@@ -113,8 +114,8 @@ public class RightInfo {
     @Column(name = "type") //캐릭터 타입   -> characters 테이블에서 type 가져오기
     private int type;
 
-    @Column(name = "time") //총 재화   -> characters 테이블에서 start_date 가져오기
-    private String time;
+    @Column(name = "birthday") //총 재화   -> characters 테이블에서 time 가져오기
+    private String birthday;
 
     @Column(name = "character_name") //총 재화   -> characters 테이블에서 character_name 가져오기
     private String character_name;

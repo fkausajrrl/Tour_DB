@@ -98,7 +98,7 @@ public class RingtInfoController {
         rightInfo.setTotal_score2(game2.getTotal_score2());
         rightInfo.setTotal_money(characterInfo.get().getTotal_money());
         rightInfo.setType(characterInfo.get().getType());
-        rightInfo.setTime(bir);
+        rightInfo.setBirthday(bir);
         rightInfo.setCharacter_name(characterInfo.get().getCharacter_name());
 
         return ResponseEntity.ok(rightInfo); //객체 정보 주기`!~!~!~!~!~!!~
