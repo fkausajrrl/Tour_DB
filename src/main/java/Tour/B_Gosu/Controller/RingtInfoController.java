@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @Controller
@@ -39,6 +41,15 @@ public class RingtInfoController {
 
         // 현재 시간을 얻어옴
         Instant currentInstant = Instant.now();
+
+        ZoneId koreaZone = ZoneId.of("Asia/Seoul");
+        LocalDate localDate = currentInstant.atZone(koreaZone).toLocalDate();
+
+        // LocalDate에서 년, 월, 일을 얻어옵니다.
+        int year = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day = localDate.getDayOfMonth();
+        String bir = day+"/"+month+"/"+year;
 
         // 두 시간 간의 차이 계산
         Duration duration = Duration.between(dbTimestamp.toInstant(), currentInstant);
@@ -86,6 +97,9 @@ public class RingtInfoController {
         rightInfo.setTotal_score1(game1.getTotal_score1());
         rightInfo.setTotal_score2(game2.getTotal_score2());
         rightInfo.setTotal_money(characterInfo.get().getTotal_money());
+        rightInfo.setType(characterInfo.get().getType());
+        rightInfo.setTime(bir);
+        rightInfo.setCharacter_name(characterInfo.get().getCharacter_name());
 
         return ResponseEntity.ok(rightInfo); //객체 정보 주기`!~!~!~!~!~!!~
     }

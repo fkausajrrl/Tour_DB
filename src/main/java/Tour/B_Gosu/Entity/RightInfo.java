@@ -63,6 +63,31 @@ public class RightInfo {
         this.total_money = total_money;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getCharacter_name() {
+        return character_name;
+    }
+
+    public void setCharacter_name(String character_name) {
+        this.character_name = character_name;
+    }
+
+
     @Id
     @Column(name = "characterid")  //프론트에서 받기
     private int characterid;
@@ -84,4 +109,13 @@ public class RightInfo {
 
     @Column(name = "total_money") //총 재화   -> characters 테이블에서 total_money 가져오기
     private int total_money;
+
+    @Column(name = "type") //캐릭터 타입   -> characters 테이블에서 type 가져오기
+    private int type;
+
+    @Column(name = "time") //총 재화   -> characters 테이블에서 start_date 가져오기
+    private String time;
+
+    @Column(name = "character_name") //총 재화   -> characters 테이블에서 character_name 가져오기
+    private String character_name;
 }
