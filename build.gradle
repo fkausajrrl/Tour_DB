@@ -30,6 +30,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.json:json:20210307'
+//	implementation 'org.springframework:spring-context:5.3.10.RELEASE' // 스프링 컨텍스트 의존성
 }
 
 tasks.named('test') {

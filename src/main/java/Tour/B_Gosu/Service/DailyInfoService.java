@@ -4,7 +4,12 @@ import Tour.B_Gosu.Entity.DailyInfo;
 import Tour.B_Gosu.Repository.DailyInfoRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -12,8 +17,11 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
+@EnableScheduling
 public class DailyInfoService {
     private final DailyInfoRepository dailyInfoRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public DailyInfoService(DailyInfoRepository dailyInfoRepository) {
@@ -50,5 +58,13 @@ public class DailyInfoService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @Transactional
+    @Scheduled(cron = "0 0 0 * * ?") // 매일 자정에 실행
+    public void resetSuFieldAtMidnight() {
+        // 자정에 실행되는 SQL 쿼리
+        String sql = "UPDATE arcore SET su = 0";
+        entityManager.createNativeQuery(sql).executeUpdate();
+        System.out.println("hello");
     }
 }

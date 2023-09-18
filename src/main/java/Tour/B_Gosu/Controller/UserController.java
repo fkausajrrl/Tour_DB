@@ -22,15 +22,17 @@ public class UserController {
     private final ItemInfoRepository itemInfoRepository;
     private final Game1_InfoRepository game1_infoRepository;
     private final Game2_InfoRepository game2_infoRepository;
+    private final DailyArCoreInfoRepository dailyArCoreInfoRepository;
 
     @Autowired
-    public UserController(UserInfoService userInfoService, UserInfoRepository userInfoRepository, CharacterInfoRepository characterInfoRepository, ItemInfoRepository itemInfoRepository, Game1_InfoRepository game1InfoRepository, Game2_InfoRepository game2InfoRepository) {
+    public UserController(UserInfoService userInfoService, UserInfoRepository userInfoRepository, CharacterInfoRepository characterInfoRepository, ItemInfoRepository itemInfoRepository, Game1_InfoRepository game1InfoRepository, Game2_InfoRepository game2InfoRepository, DailyArCoreInfoRepository dailyArCoreInfoRepository) {
         this.userInfoService = userInfoService;
         this.userInfoRepository = userInfoRepository;
         this.characterInfoRepository = characterInfoRepository;
         this.itemInfoRepository = itemInfoRepository;
         game1_infoRepository = game1InfoRepository;
         game2_infoRepository = game2InfoRepository;
+        this.dailyArCoreInfoRepository = dailyArCoreInfoRepository;
     }
 
     @GetMapping("/find") //초기 부팅 시에 조회.
@@ -84,6 +86,11 @@ public class UserController {
                 game2.setMax_score2(0);
                 game2.setTotal_score2(0);
                 game2_infoRepository.save(game2);
+
+                DailyArCoreInfo dailyArCoreInfo = new DailyArCoreInfo(); //DailyArCore 테이블에 객체 생성
+                dailyArCoreInfo.setCharacterid(num);
+                dailyArCoreInfo.setSu(0);
+                dailyArCoreInfoRepository.save(dailyArCoreInfo);
 
                 return ResponseEntity.ok(String.valueOf(num)); //다중 회차 캐릭터 생성.
             }else{
@@ -153,6 +160,11 @@ public class UserController {
             game2.setMax_score2(0);
             game2.setTotal_score2(0);
             game2_infoRepository.save(game2);
+
+            DailyArCoreInfo dailyArCoreInfo = new DailyArCoreInfo(); //DailyArCore 테이블에 객체 생성
+            dailyArCoreInfo.setCharacterid(num2);
+            dailyArCoreInfo.setSu(0);
+            dailyArCoreInfoRepository.save(dailyArCoreInfo);
 
             return ResponseEntity.ok(String.valueOf(num2)); //프론트로 characterid 보내줌.
         } else {
