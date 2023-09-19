@@ -46,8 +46,6 @@ public class BGosuApplication {
 //				"src/main/java/Tour/json/DB데이터 확정_국문/38_data.json",
 //				"src/main/java/Tour/json/DB데이터 확정_국문/39_data.json",
                 "src/main/java/Tour/json/Use/knto_0916_최종최종.json"//Knto + 챌린지 관련 데이터
-
-
         );
         List<KorServiceInfo> korServiceInfos = korServiceInfoController.readJsonFiles(filePaths);
         korServiceInfoService.saveKorServiceInfoList(korServiceInfos); //knto + 챌린지 내용 저장
@@ -57,5 +55,8 @@ public class BGosuApplication {
 
         String file_path = "src/main/java/Tour/json/Use/quiz.json";//챌린지 인증용 퀴즈(quiz) 데이터
         quizInfoService.saveQuizData(file_path); //quiz 데이터 저장
+
+        String file_paths = "src/main/java/Tour/json/Use/BusanApi_data.json";// 부산 내국인 여행 통계
+        dailyInfoService.saveBusanApi(file_paths); //부산 내국인 여행 통계 db 저장
     }
 }
