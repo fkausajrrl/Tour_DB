@@ -4,7 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name ="statistics")
-public class StatisticsInfo {
+public class StatisticsInfo implements Comparable<StatisticsInfo>{
+//    @Override
+//    public int compareTo(StatisticsInfo other) {
+//        // top10 값을 비교하여 내림차순으로 정렬
+//        return Integer.compare(other.getTop10(), this.top10);
+//    }
 
     public int getCount() {
         return count;
@@ -40,4 +45,9 @@ public class StatisticsInfo {
     @Column(name = "title")
     private String title;
 
+    @Override
+    public int compareTo(StatisticsInfo other) {
+        // top10 값을 비교하여 내림차순으로 정렬
+        return Integer.compare(other.getTop10(), this.top10);
+    }
 }

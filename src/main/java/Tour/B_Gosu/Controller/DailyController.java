@@ -31,7 +31,7 @@ public class DailyController {
 
     @GetMapping("/tour") // tour, cultural /그거 아시나요~?~?~
     public ResponseEntity<DailyInfo> getCultualDaily() {
-        int type = ThreadLocalRandom.current().nextInt(1, 283); // 1 이상 283 미만 //117
+        int type = ThreadLocalRandom.current().nextInt(1, 145); // 1 이상 145 미만
         DailyInfo dailyInfo = dailyInfoRepository.findByCount(type);
         return new ResponseEntity<>(dailyInfo, HttpStatus.OK);
     }
