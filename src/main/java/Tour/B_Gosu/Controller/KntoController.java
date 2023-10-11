@@ -81,7 +81,11 @@ public class KntoController {
                     .toList());
             List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
-            return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+            if (filteredResults.isEmpty()) { //filteredResults 여부 확인
+                return ResponseEntity.notFound().build(); // 데이터 x
+            } else {
+                return ResponseEntity.ok(filteredResults); // 데이터 O
+            }
         }
 
         filteredResultsSet.addAll(restaurants.stream() //모두 일치
@@ -122,7 +126,11 @@ public class KntoController {
 
         List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
-        return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+        if (filteredResults.isEmpty()) { //filteredResults 여부 확인
+            return ResponseEntity.notFound().build(); // 데이터 x
+        } else {
+            return ResponseEntity.ok(filteredResults); // 데이터 O
+        }
     }
 
     @GetMapping("/tour") //구현 완료
@@ -175,7 +183,11 @@ public class KntoController {
                     ).toList());
             List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
-            return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+            if (filteredResults.isEmpty()) { //filteredResults 여부 확인
+                return ResponseEntity.notFound().build(); // 데이터 x
+            } else {
+                return ResponseEntity.ok(filteredResults); // 데이터 O
+            }
         }
 
         filteredResultsSet.addAll(touristSpots.stream() //모두 일치
@@ -211,7 +223,11 @@ public class KntoController {
 
         List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
-        return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+        if (filteredResults.isEmpty()) { //filteredResults 여부 확인
+            return ResponseEntity.notFound().build(); // 데이터 x
+        } else {
+            return ResponseEntity.ok(filteredResults); // 데이터 O
+        }
     }
 
     @GetMapping("/cultural") //구현 완료
@@ -265,7 +281,11 @@ public class KntoController {
                     ).toList());
             List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
-            return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+            if (filteredResults.isEmpty()) { //filteredResults 여부 확인
+                return ResponseEntity.notFound().build(); // 데이터 x
+            } else {
+                return ResponseEntity.ok(filteredResults); // 데이터 O
+            }
         }
 
         filteredResultsSet.addAll(culturalPlaces.stream() //모두 일치
@@ -303,7 +323,12 @@ public class KntoController {
 //        System.out.println("count = " + filteredResultsSet.stream().count());
 
         List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
-        return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+
+        if (filteredResults.isEmpty()) { //filteredResults 여부 확인
+            return ResponseEntity.notFound().build(); // 데이터 x
+        } else {
+            return ResponseEntity.ok(filteredResults); // 데이터 O
+        }
     }
 
     @GetMapping("/shopping") //구현 완료
@@ -371,7 +396,11 @@ public class KntoController {
         }
         List<KorServiceInfo> filteredResults = new ArrayList<>(filteredResultsSet);
 
-        return new ResponseEntity<>(filteredResults, HttpStatus.OK);
+        if (filteredResults.isEmpty()) { //filteredResults 여부 확인
+            return ResponseEntity.notFound().build(); // 데이터 x
+        } else {
+            return ResponseEntity.ok(filteredResults); // 데이터 O
+        }
     }
 
     @GetMapping("/enjoy") //구현 완료   tag1만 분류해서 주는게 맞는가? tag1값 다음에 tag2값 같이 해서 정렬 된 상태로 줘야하는 거 아닌가 -> 지우안테 물어보깅.
@@ -388,7 +417,12 @@ public class KntoController {
                 .toList());
 //        System.out.println("count = " + (long) enjoyPlaces2.size());
 
-        return new ResponseEntity<>(enjoyPlaces2, HttpStatus.OK);
+        if (enjoyPlaces2.isEmpty()) { //filteredResults 여부 확인
+            return ResponseEntity.notFound().build(); // 데이터 x
+        } else {
+            return ResponseEntity.ok(enjoyPlaces2); // 데이터 O
+        }
+
     }
 
 }
