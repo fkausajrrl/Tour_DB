@@ -1,4 +1,4 @@
-2023년 관광데이터 활용 공모전 참가 작품
+2023년 관광데이터 활용 공모전 참가 작품 \n
 Name : B - Gosu
 Install
 - PlayStore : https://play.google.com/store/apps/details?id=com.b_gosu&hl=ko-KR
