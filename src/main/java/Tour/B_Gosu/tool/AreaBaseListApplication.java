@@ -22,7 +22,7 @@ public class AreaBaseListApplication {
             int contentTypeId = contentType_Id[i];
 
             StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B551011/KorService1/areaBasedList1"); /*URL*/
-            urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=vKpB3BRjLRvDCYPVa5q8UHfrYeIX3NjEDb2mANeain5d14rLyU11zkd151ZW7P4WQAO1wRAP%2Fpx3wIswtBdctw%3D%3D"); /*Service Key*/
+            urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "/*Service Key*/"); /*Service Key*/
             urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
             urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
             urlBuilder.append("&" + URLEncoder.encode("MobileOS", "UTF-8") + "=" + URLEncoder.encode("AND", "UTF-8")); /*Moblie OS*/
