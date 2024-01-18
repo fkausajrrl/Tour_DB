@@ -13,7 +13,7 @@ import static Tour.B_Gosu.tool.AreaBaseListApplication.writeJsonToFile;
 public class BusanApi {
     public static void main(String[] args) throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6260000/BusanTourStaticService2/getVisitorStatInfo2"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=vKpB3BRjLRvDCYPVa5q8UHfrYeIX3NjEDb2mANeain5d14rLyU11zkd151ZW7P4WQAO1wRAP%2Fpx3wIswtBdctw%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "/*Service Key*/"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("resultType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*JSON방식으로 호출 시 파라미터 resultType=json 입력*/
